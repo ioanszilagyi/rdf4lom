@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:categories="rdf4lom.categories.*"
+	label="Build LOM">
+	
+	<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
+	<mx:TabBar dataProvider="viewstack1" />
+	
+	<mx:ViewStack id="viewstack1" y="20" width="100%" height="100%">
+		<categories:general />
+		<categories:lifecycle />
+		<categories:metametadata />
+		<categories:technical />
+		<categories:educational />
+		<categories:rights />
+		<categories:relation />
+		<categories:annotation />
+		<categories:classification />	
+	</mx:ViewStack>
+
+</mx:Canvas>
