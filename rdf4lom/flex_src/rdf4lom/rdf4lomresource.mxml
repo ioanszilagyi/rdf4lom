@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="RDF Resource">
+	
+    <mx:RemoteObject id="remoteOjb" destination="remoteClass">
+        <mx:method name="HiThere" result="resultHandler(event)"/>
+    </mx:RemoteObject>
+
+	<mx:Script>      
+        <![CDATA[
+            import mx.rpc.events.*;
+            import mx.collections.*;
+            import mx.controls.*;
+        
+            public function CallTheMethodFromJava():void
+            {
+                remoteOjb.HiThere();
+            }
+         
+            public function resultHandler(event:ResultEvent):void
+            {
+                DisplayInTextArea.text = event.result as String;
+            }
+        ]]>
+    </mx:Script>
+
+	<mx:Button label="Get Data form Java" click="CallTheMethodFromJava();" x="242" y="88"/>
+	<mx:Panel x="242" y="131" width="427" height="187">
+		<mx:TextArea id="DisplayInTextArea" width="100%" height="100%"/>	
+	</mx:Panel>
+</mx:Canvas>
