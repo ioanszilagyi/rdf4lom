@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="RDF Resource">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Preview">
 	
-    <mx:RemoteObject id="remoteOjb" destination="remoteClass">
+    <mx:RemoteObject id="remoteOjb" destination="remoteClass" fault="handleFault(event)" >
         <mx:method name="HiThere" result="resultHandler(event)"/>
     </mx:RemoteObject>
 
 	<mx:Script>      
         <![CDATA[
+        
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.events.FaultEvent;
+            import mx.controls.Alert;                      
+            
+            public function handleFault(event:FaultEvent):void {
+                // Handle fault.
+                Alert.show(event.fault.faultString, "Fault");               
+            }
+            
             import mx.rpc.events.*;
             import mx.collections.*;
             import mx.controls.*;
