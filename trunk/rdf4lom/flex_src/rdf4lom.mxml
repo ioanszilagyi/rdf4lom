@@ -4,23 +4,53 @@
 	xmlns:panels="rdf4lom.*"
 	layout="absolute">
 	
+	<mx:Metadata>
+        [ResourceBundle("myResources")]
+    </mx:Metadata>
+	
+	<mx:Script>
+		<![CDATA[		
+		
+			private function inEN():void {
+				resourceManager.localeChain = [ "en_US" ];		
+			}
+			
+			private function inFR():void {
+				resourceManager.localeChain = [ "fr_FR" ];
+			}
+		]]>
+	</mx:Script>
+	
 	<mx:VBox height="100%" width="100%" verticalGap="0">
-		<mx:HBox width="100%" verticalAlign="middle" horizontalGap="8">
-			<mx:VBox height="100%" verticalGap="0" verticalAlign="bottom">
-				<mx:Label text="RDF4LOM"  fontWeight="bold" fontSize="14" fontFamily="Times New Roman" fontStyle="italic" enabled="true" color="#000000"/>
-				<mx:Label text="v1.03"  fontFamily="Times New Roman" fontSize="10" fontStyle="italic" color="#000000" alpha="0.5"/>
-			</mx:VBox>
-			<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
-			<mx:TabBar dataProvider="viewstack1" />	
-			<mx:HBox width="100%" horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12">
-				<mx:Image source="rdf4lom/images/logo.gif" width="205" height="62" alpha="1.0" themeColor="#FFFC00"/>	
+		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">
+			<mx:VRule height="20"/>
+			
+			<mx:Button icon="@Embed(source='image/uk.png')" click="inEN();" width="26" height="20"/>
+			<mx:Button icon="@Embed(source='image/fr.png')" click="inFR();" width="26" height="22"/>								
+			
+			<mx:VRule height="20"/>
+			
+			<mx:Button label="{resourceManager.getString('myResources', 'GREETING')}"/>
+			<mx:Button label="New" width="56"/>
+			
+			<mx:HBox horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12" width="100%" verticalAlign="middle" height="38">
+				<mx:Button icon="@Embed(source='image/logo_small.gif')" width="90" height="30"/>
 			</mx:HBox>
 		</mx:HBox>
+		
+		<mx:HRule  width="190"/>
+		
+		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">			
+			<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
+			<mx:TabBar dataProvider="viewstack1" />
+		</mx:HBox>	
+				
+		<mx:HRule width="100%"/>
+		
 		<mx:ViewStack id="viewstack1" width="100%" height="100%">
 			<panels:createlom />
-			<panels:rdf4lomresource />
-			<panels:contact />		
-		</mx:ViewStack>
+			<panels:rdf4lomresource />		
+		</mx:ViewStack>	
 	</mx:VBox>
-	
+<!-- dd-->
 </mx:Application>
