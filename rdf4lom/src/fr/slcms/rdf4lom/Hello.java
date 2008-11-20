@@ -15,6 +15,8 @@ import com.hp.hpl.jena.vocabulary.*;
  */
 public class Hello {
  
+	// TODO: In FLEX delete components that are not necessary, for ex. in general the language
+	
 	// some definitions
     static String tutorialURI  = "http://hostname/rdf/tutorial/";
     static String briansName   = "Brian McBride";

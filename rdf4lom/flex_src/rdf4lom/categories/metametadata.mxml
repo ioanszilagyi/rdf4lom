@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Meta-Metadata">
-	
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'METAMETADATA')}">
+	<!--
+		This category describes this metadata record itself (rather than the learning object
+		that this record describes). 
+	-->
+	<mx:Style source="rdf4lom/css/style.css" />
+    
+	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="3.1 {resourceManager.getString('myResources', 'IDENTIFIER')}" id="midentifier" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="3.2 {resourceManager.getString('myResources', 'CONTRIBUTE')}" id="mcontribute" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="3.3 {resourceManager.getString('myResources', 'METADATASCHEMA')}" id="mmetadataschema" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="3.4 {resourceManager.getString('myResources', 'LANGUAGE')}" id="mlanguage" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
 </mx:Canvas>
