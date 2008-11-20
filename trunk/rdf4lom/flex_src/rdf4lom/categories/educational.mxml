@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Educational">
-	
+			
+	<mx:Style source="rdf4lom/css/style.css" />
+    
+	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="5.1 Identifiant">
+			
+		</mx:VBox>
+		<mx:VBox label="5.2 Contribution">
+					
+		</mx:VBox>
+		<mx:VBox label="5.3 Schema de metadones">
+					
+		</mx:VBox>
+		<mx:VBox label="5.4 Language">
+					
+		</mx:VBox>
+		<mx:VBox label="5.5 Schema de metadones">
+					
+		</mx:VBox>
+		<mx:VBox label="5.6 Autre co">
+					
+		</mx:VBox>	
+		<mx:VBox label="5.7 Duree">
+					
+		</mx:VBox>
+		<mx:VBox label="5.8 Schema de metadones">
+					
+		</mx:VBox>
+		<mx:VBox label="5.9 Language">
+					
+		</mx:VBox>
+		<mx:VBox label="5.10 Schema de metadones">
+					
+		</mx:VBox>
+		<mx:VBox label="5.11 Autre co">
+					
+		</mx:VBox>	
+	</mx:Accordion>	
 </mx:Canvas>

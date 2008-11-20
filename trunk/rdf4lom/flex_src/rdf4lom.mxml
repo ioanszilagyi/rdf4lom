@@ -9,14 +9,41 @@
     </mx:Metadata>
 	
 	<mx:Script>
-		<![CDATA[		
-		
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.collections.ArrayCollection;						
+			import rdf4lom.categories.components.*;			
+					
+			public var lomCategories:ArrayCollection = new ArrayCollection();
+			
 			private function inEN():void {
 				resourceManager.localeChain = [ "en_US" ];		
 			}
 			
 			private function inFR():void {
 				resourceManager.localeChain = [ "fr_FR" ];
+			}
+			
+			private function buildNewLOM():void {
+				// Create New LOM
+				// General category
+				LOMForm.cgeneral.gidentifier.addChild(new ide_add());
+				LOMForm.cgeneral.gtitle.addChild(new tit_add());
+				LOMForm.cgeneral.glanguage.addChild(new lan_add());
+				LOMForm.cgeneral.gdescription.addChild(new des_add());
+				LOMForm.cgeneral.gkeyword.addChild(new key_add());
+				LOMForm.cgeneral.gcoverage.addChild(new cov_add());
+				LOMForm.cgeneral.gstructure.addChild(new str_add());
+				LOMForm.cgeneral.gaggregationlevel.addChild(new agg_add());				
+				// Life Cycle category				
+				LOMForm.clifecycle.lversion.addChild(new ver_add());
+				LOMForm.clifecycle.lstatus.addChild(new sta_add());
+				LOMForm.clifecycle.lcontribute.addChild(new con_add());
+				// Meta-Metadata category
+				LOMForm.cmetametadata.midentifier.addChild(new ide_add());
+				LOMForm.cmetametadata.mcontribute.addChild(new con_add());
+				LOMForm.cmetametadata.mmetadataschema.addChild(new met_add());
+				LOMForm.cmetametadata.mlanguage.addChild(new lan_add());
 			}
 		]]>
 	</mx:Script>
@@ -25,20 +52,20 @@
 		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">
 			<mx:VRule height="20"/>
 			
-			<mx:Button icon="@Embed(source='image/uk.png')" click="inEN();" width="26" height="20"/>
+			<mx:Button icon="@Embed(source='image/uk.png')" click="inEN();" width="26" height="22"/>
 			<mx:Button icon="@Embed(source='image/fr.png')" click="inFR();" width="26" height="22"/>								
 			
 			<mx:VRule height="20"/>
 			
-			<mx:Button label="{resourceManager.getString('myResources', 'GREETING')}"/>
-			<mx:Button label="New" width="56"/>
+			<mx:Button label="{resourceManager.getString('myResources', 'NEW')}" width="90"/>
+			<mx:Button label="{resourceManager.getString('myResources', 'OPEN')}" width="90"/>
 			
 			<mx:HBox horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12" width="100%" verticalAlign="middle" height="38">
 				<mx:Button icon="@Embed(source='image/logo_small.gif')" width="90" height="30"/>
 			</mx:HBox>
 		</mx:HBox>
 		
-		<mx:HRule  width="190"/>
+		<mx:HRule width="300" height="2"/>
 		
 		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">			
 			<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
@@ -47,8 +74,8 @@
 				
 		<mx:HRule width="100%"/>
 		
-		<mx:ViewStack id="viewstack1" width="100%" height="100%">
-			<panels:createlom />
+		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all" creationComplete="buildNewLOM();" >
+			<panels:createlom id="LOMForm" />
 			<panels:rdf4lomresource />		
 		</mx:ViewStack>	
 	</mx:VBox>

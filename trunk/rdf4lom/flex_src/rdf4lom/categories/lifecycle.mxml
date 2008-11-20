@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Life Cycle">
-	
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'LIFECYCLE')}">
+		
+	<mx:Style source="rdf4lom/css/style.css" />
+    
+	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="2.1 {resourceManager.getString('myResources', 'VERSION')}" id="lversion" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="2.2 {resourceManager.getString('myResources', 'STATUS')}" id="lstatus" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="2.3 {resourceManager.getString('myResources', 'CONTRIBUTE')}" id="lcontribute" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
 </mx:Canvas>

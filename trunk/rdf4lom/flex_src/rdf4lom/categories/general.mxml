@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="General">
-	<mx:Accordion x="0" y="0" width="100%" height="100%">
-		<mx:Canvas label="Accordion Pane 1" width="100%" height="100%">
-		</mx:Canvas>
-		<mx:Canvas label="dsd" width="100%" height="100%">
-		</mx:Canvas>
-		<mx:Canvas label="tes2" width="100%" height="100%">
-		</mx:Canvas>
-		<mx:Canvas label="test" width="100%" height="100%">
-		</mx:Canvas>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'GENERAL')}">
+	    
+	<mx:Style source="rdf4lom/css/style.css" />
+    
+	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="1.1 {resourceManager.getString('myResources', 'IDENTIFIER')}" id="gidentifier" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.2 {resourceManager.getString('myResources', 'TITLE')}" id="gtitle" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.3 {resourceManager.getString('myResources', 'LANGUAGE')}" id="glanguage" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.4 {resourceManager.getString('myResources', 'DESCRIPTION')}" id="gdescription" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.5 {resourceManager.getString('myResources', 'KEYWORD')}" id="gkeyword" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.6 {resourceManager.getString('myResources', 'COVERAGE')}" id="gcoverage" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.7 {resourceManager.getString('myResources', 'STRUCTURE')}" id="gstructure" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="1.8 {resourceManager.getString('myResources', 'AGGREGATIONLEVEL')}" id="gaggregationlevel" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
 	</mx:Accordion>
-	
 </mx:Canvas>
