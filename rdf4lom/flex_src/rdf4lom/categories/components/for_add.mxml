@@ -3,20 +3,14 @@
 
 	<mx:Script>
 		<![CDATA[
-			import as3.DynCatArrays;
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new ide_delete();
-				DynCatArrays.lomGIdentifier.addItem(theDisObj);
-				parent.addChild(theDisObj);
+				parent.addChild(new for_delete());
 			}
 		]]>
 	</mx:Script>
-	
-	<mx:Label text="{resourceManager.getString('myResources', 'CATALOG')}"/>
-	<mx:TextInput id="catalog"/>
+	<mx:CheckBox label="non-digital"/>
 	<mx:VRule height="15"/>
-	<mx:Label text="{resourceManager.getString('myResources', 'ENTRY')}"/>
-	<mx:TextInput id="entry"/>
+	<mx:TextInput/>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
 </mx:HBox>

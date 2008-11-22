@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Preview">
-	
-    <mx:RemoteObject id="remoteOjb" destination="remoteClass" fault="handleFault(event)" >
-        <mx:method name="HiThere" result="resultHandler(event)"/>
-    </mx:RemoteObject>
 
+    <mx:RemoteObject id="remoteOjb" destination="remoteClass" fault="handleFault(event)" >
+        <mx:method name="ConstructRDF4LOM" result="resultHandler(event)"/>
+    </mx:RemoteObject>
+    
 	<mx:Script>      
         <![CDATA[
+        	import as3.LomCategories;
+        	import as3.DynCatArrays;
         
-            import mx.rpc.events.ResultEvent;
-            import mx.rpc.events.FaultEvent;
-            import mx.controls.Alert;                      
+            import mx.rpc.events.*;
+            import mx.collections.*;
+            import mx.controls.*;
             
             public function handleFault(event:FaultEvent):void {
                 // Handle fault.
                 Alert.show(event.fault.faultString, "Fault");               
             }
-            
-            import mx.rpc.events.*;
-            import mx.collections.*;
-            import mx.controls.*;
-        
-            public function CallTheMethodFromJava():void
+           
+            public function buildRDF4LOM():void
             {
-                remoteOjb.HiThere();
+            	// the object where all LOM categories will be stored 
+            	var passLomObj:LomCategories = new LomCategories();
+            	var i:int;
+
+                // Get all the text from all the LOM categories
+                //
+                // General
+                /// Identifier  
+               	for (i=0; i<DynCatArrays.lomGIdentifier.length; i++) {
+                 	passLomObj.lomGInterface.push(new Array(DynCatArrays.lomGIdentifier[i].catalog.text, DynCatArrays.lomGIdentifier[i].entry.text));
+                }
+                /// Title
+               	for (i=0; i<DynCatArrays.lomGTitle.length; i++) {
+                 	passLomObj.lomGTitle.push(new Array(DynCatArrays.lomGTitle[i].title.text, DynCatArrays.lomGTitle[i].lang.text));
+                }
+                
+                
+            	// the example of the object sended to java   
+            	//  
+ /*             
+ 				lomGInterface = [Ljava.lang.String;[] (Array length:2)
+				[0] = java.lang.String[] (Array length:2)
+        			[0] = http://www.catalog.com
+        			[1] = The Entry
+				[1] = java.lang.String[] (Array length:2)
+        			[0] = http://www.catalog2.com
+        			[1] = The Entry 2
+ */
+                // send the LOM object into java to build the related rdf
+               	remoteOjb.ConstructRDF4LOM(passLomObj);
             }
          
             public function resultHandler(event:ResultEvent):void
@@ -33,8 +60,11 @@
         ]]>
     </mx:Script>
 
-	<mx:Button label="Get Data form Java" click="CallTheMethodFromJava();" x="242" y="88"/>
-	<mx:Panel x="242" y="131" width="427" height="187">
-		<mx:TextArea id="DisplayInTextArea" width="100%" height="100%"/>	
-	</mx:Panel>
+
+	<mx:VBox width="100%" height="100%">
+		<mx:Button label="Preview RDF" click="buildRDF4LOM();" x="112" y="10"/>
+		<mx:Panel x="22" y="40" width="100%" height="100%">
+			<mx:TextArea id="DisplayInTextArea" width="100%" height="100%"/>	
+		</mx:Panel>
+	</mx:VBox>
 </mx:Canvas>
