@@ -9,7 +9,7 @@ package fr.slcms.rdf4lom;
  */
 public class LomCategories {
 	// General
-	public String[][] lomGInterface;	
+	public String[][] lomGIdentifier;	
 	public String[][] lomGTitle;
 	public String[] lomGLanguage;
 	public String[] lomGDescription;

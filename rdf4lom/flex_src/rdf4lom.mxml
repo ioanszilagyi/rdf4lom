@@ -24,11 +24,13 @@
 			
 			private function buildNewLOM():void {
 				DynCatArrays.lomGIdentifier.addItem(new ide_add());
+				DynCatArrays.lomGTitle.addItem(new tit_add());
+				DynCatArrays.lomGLanguage.addItem(new lan_add());			
 				// Create New LOM
 				// General category
 				LOMForm.cgeneral.gidentifier.addChild(DynCatArrays.lomGIdentifier.getItemAt(0) as DisplayObject);
-				LOMForm.cgeneral.gtitle.addChild(new tit_add());
-				LOMForm.cgeneral.glanguage.addChild(new lan_add());
+				LOMForm.cgeneral.gtitle.addChild(DynCatArrays.lomGTitle.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.glanguage.addChild(DynCatArrays.lomGLanguage.getItemAt(0) as DisplayObject);
 				LOMForm.cgeneral.gdescription.addChild(new des_add());
 				LOMForm.cgeneral.gkeyword.addChild(new key_add());
 				LOMForm.cgeneral.gcoverage.addChild(new cov_add());
