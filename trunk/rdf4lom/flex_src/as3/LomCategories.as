@@ -5,7 +5,7 @@ package as3
 	public class LomCategories
 	{
 		// General
-		public var lomGInterface:Array = new Array();
+		public var lomGIdentifier:Array = new Array();
 		public var lomGTitle:Array = new Array();
 		public var lomGLanguage:Array = new Array();
 		public var lomGDescription:Array = new Array();
