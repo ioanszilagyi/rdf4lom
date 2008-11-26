@@ -110,6 +110,34 @@ public class BuildRDF4LOM {
 											lomCategories.lomGKeyword[i][1]));
 						}
 					}
+					
+					// check if there is some values in Coverage tab
+					// Coverage
+					if (isValueIn(lomCategories.lomGCoverage)) {
+						for (int i = 0; i < lomCategories.lomGCoverage.length; i++) {
+							General.addProperty(model.createProperty(model
+									.expandPrefix("lom:coverage")), model
+									.createLiteral(
+											lomCategories.lomGCoverage[i][0],
+											lomCategories.lomGCoverage[i][1]));
+						}
+					}
+					
+					// check if there is some values in Structure tab
+					// Structure
+					if (isValueIn(lomCategories.lomGStructure)) {
+						General.addProperty(model.createProperty(model
+								.expandPrefix("lom:structure")),
+								lomCategories.lomGStructure[0]);
+					}
+					
+					// check if there is some values in Aggregation Level tab
+					// Aggregation Level
+					if (isValueIn(lomCategories.lomGAggregationLevel)) {
+						General.addProperty(model.createProperty(model
+								.expandPrefix("lom:aggregationLevel")),
+								lomCategories.lomGAggregationLevel[0]);
+					}
 				}
 				StringWriter out_test = new StringWriter();
 
@@ -162,10 +190,13 @@ public class BuildRDF4LOM {
 				return true;
 			else if (isValueIn(lomCategories.lomGKeyword)) 
 				return true; 
-			/*else
-			 if (isValueIn(lomCategories.lomGCoverage)) return true; else if
-			 (isValueIn(lomCategories.lomGAggregationLevel)) return true;
-			*/ else
+			else if (isValueIn(lomCategories.lomGCoverage)) 
+				return true;
+			else if (isValueIn(lomCategories.lomGStructure)) 
+				return true;
+			else if (isValueIn(lomCategories.lomGAggregationLevel)) 
+				return true;		
+			else
 				return false;
 		else
 			switch (Categories.valueOf(category)) {
@@ -177,8 +208,14 @@ public class BuildRDF4LOM {
 				else if (isValueIn(lomCategories.lomGLanguage))
 					return true;
 				else if (isValueIn(lomCategories.lomGDescription))
-					return true;				
+					return true;
 				else if (isValueIn(lomCategories.lomGKeyword))
+					return true;
+				else if (isValueIn(lomCategories.lomGCoverage))					
+					return true;
+				else if (isValueIn(lomCategories.lomGStructure))
+					return true;
+				else if (isValueIn(lomCategories.lomGAggregationLevel))
 					return true;
 			}
 			default:
