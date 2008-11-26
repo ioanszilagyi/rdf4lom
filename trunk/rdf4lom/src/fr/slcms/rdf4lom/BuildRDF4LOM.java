@@ -6,15 +6,10 @@ package fr.slcms.rdf4lom;
 import java.io.StringWriter;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.enhanced.*;
 
 /**
  * @author Radu
  *
- */
-/**
- * @author Radu
- * 
  */
 public class BuildRDF4LOM {
 
@@ -55,6 +50,7 @@ public class BuildRDF4LOM {
 							.expandPrefix("lom:hasElement")), General);
 
 					// check if there is some values in Identifier tab
+					// Identifier
 					if (isValueIn(lomCategories.lomGIdentifier)) {
 						Resource Identifier = model.createResource(model
 								.createResource(model
@@ -62,8 +58,7 @@ public class BuildRDF4LOM {
 						General.addProperty(model.createProperty(model
 								.expandPrefix("lom:isElementComponentOf")),
 								Identifier);
-
-						// Identifier
+						
 						for (int i = 0; i < lomCategories.lomGIdentifier.length; i++) {
 							Identifier.addProperty(model.createProperty(model
 									.expandPrefix("lom:catalog")),
@@ -92,6 +87,28 @@ public class BuildRDF4LOM {
 						General.addProperty(model.createProperty(model
 								.expandPrefix("lom:language")),
 								lomCategories.lomGLanguage[0]);
+					}
+					
+					// check if there is some values in Title tab
+					// Description
+					if (isValueIn(lomCategories.lomGDescription)) {
+						for (int i = 0; i < lomCategories.lomGDescription.length; i++) {
+							General.addProperty(model.createProperty(model
+									.expandPrefix("lom:description")),
+									lomCategories.lomGDescription[i]);
+						}
+					}
+					
+					// check if there is some values in Keyword tab
+					// Keyword
+					if (isValueIn(lomCategories.lomGKeyword)) {
+						for (int i = 0; i < lomCategories.lomGKeyword.length; i++) {
+							General.addProperty(model.createProperty(model
+									.expandPrefix("lom:keyword")), model
+									.createLiteral(
+											lomCategories.lomGKeyword[i][0],
+											lomCategories.lomGKeyword[i][1]));
+						}
 					}
 				}
 				StringWriter out_test = new StringWriter();
@@ -141,12 +158,14 @@ public class BuildRDF4LOM {
 				return true;
 			else if (isValueIn(lomCategories.lomGLanguage))
 				return true;
-			/*
-			 * else if (isValueIn(lomCategories.lomGDescription)) return true;
-			 * else if (isValueIn(lomCategories.lomGKeyword)) return true; else
-			 * if (isValueIn(lomCategories.lomGCoverage)) return true; else if
-			 * (isValueIn(lomCategories.lomGAggregationLevel)) return true;
-			 */else
+			else if (isValueIn(lomCategories.lomGDescription)) 
+				return true;
+			else if (isValueIn(lomCategories.lomGKeyword)) 
+				return true; 
+			/*else
+			 if (isValueIn(lomCategories.lomGCoverage)) return true; else if
+			 (isValueIn(lomCategories.lomGAggregationLevel)) return true;
+			*/ else
 				return false;
 		else
 			switch (Categories.valueOf(category)) {
@@ -156,6 +175,10 @@ public class BuildRDF4LOM {
 				else if (isValueIn(lomCategories.lomGTitle))
 					return true;
 				else if (isValueIn(lomCategories.lomGLanguage))
+					return true;
+				else if (isValueIn(lomCategories.lomGDescription))
+					return true;				
+				else if (isValueIn(lomCategories.lomGKeyword))
 					return true;
 			}
 			default:
