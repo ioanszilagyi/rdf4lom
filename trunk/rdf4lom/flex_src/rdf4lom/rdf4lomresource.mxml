@@ -46,8 +46,19 @@
                	for (i=0; i<DynCatArrays.lomGKeyword.length; i++) {
                  	passLomObj.lomGKeyword.push(new Array(DynCatArrays.lomGKeyword[i].keyword.text, DynCatArrays.lomGKeyword[i].lang.text));
                 }
-                /////////////////////////////////////////// 
-            	// the example of the object sended to java   
+                // Coverage               
+               	for (i=0; i<DynCatArrays.lomGCoverage.length; i++) {
+                 	passLomObj.lomGCoverage.push(new Array(DynCatArrays.lomGCoverage[i].coverage.text, DynCatArrays.lomGCoverage[i].lang.text));
+                }
+                // Structure
+                passLomObj.lomGStructure.push(DynCatArrays.lomGStructure[0].structure.text);   
+                // Aggregation Level
+                passLomObj.lomGAggregationLevel.push(DynCatArrays.lomGAggregationLevel[0].agg_level.text);
+                
+                             
+                //////////////////////////////////////////////
+            	// the example of the object sended to java //
+            	//////////////////////////////////////////////   
  				/*             
  				lomGInterface = [Ljava.lang.String;[] (Array length:2)
 				[0] = java.lang.String[] (Array length:2)

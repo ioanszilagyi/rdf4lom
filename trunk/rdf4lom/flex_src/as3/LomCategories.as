@@ -10,7 +10,7 @@ package as3
 		public var lomGLanguage:Array = new Array();
 		public var lomGDescription:Array = new Array();
 		public var lomGKeyword:Array = new Array();
-		public var lomGCovrage:Array = new Array();
+		public var lomGCoverage:Array = new Array();
 		public var lomGStructure:Array = new Array();
 		public var lomGAggregationLevel:Array = new Array();
 		
