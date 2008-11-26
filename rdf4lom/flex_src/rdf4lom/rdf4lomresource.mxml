@@ -36,11 +36,16 @@
                	for (i=0; i<DynCatArrays.lomGTitle.length; i++) {
                  	passLomObj.lomGTitle.push(new Array(DynCatArrays.lomGTitle[i].title.text, DynCatArrays.lomGTitle[i].lang.text));
                 }
-                
                 // Language
                 passLomObj.lomGLanguage.push(DynCatArrays.lomGLanguage[0].lang.text);
-                
-                
+                // Description
+               	for (i=0; i<DynCatArrays.lomGDescription.length; i++) {
+                 	passLomObj.lomGDescription.push(DynCatArrays.lomGDescription[i].description.text);
+                } 
+                // Keyword               
+               	for (i=0; i<DynCatArrays.lomGKeyword.length; i++) {
+                 	passLomObj.lomGKeyword.push(new Array(DynCatArrays.lomGKeyword[i].keyword.text, DynCatArrays.lomGKeyword[i].lang.text));
+                }
                 /////////////////////////////////////////// 
             	// the example of the object sended to java   
  				/*             

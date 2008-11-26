@@ -23,16 +23,19 @@
 			}
 			
 			private function buildNewLOM():void {
+				// Create the arrays
 				DynCatArrays.lomGIdentifier.addItem(new ide_add());
 				DynCatArrays.lomGTitle.addItem(new tit_add());
-				DynCatArrays.lomGLanguage.addItem(new lan_add());			
+				DynCatArrays.lomGLanguage.addItem(new lan_add());
+				DynCatArrays.lomGDescription.addItem(new des_add());
+				DynCatArrays.lomGKeyword.addItem(new key_add());				
 				// Create New LOM
 				// General category
 				LOMForm.cgeneral.gidentifier.addChild(DynCatArrays.lomGIdentifier.getItemAt(0) as DisplayObject);
 				LOMForm.cgeneral.gtitle.addChild(DynCatArrays.lomGTitle.getItemAt(0) as DisplayObject);
 				LOMForm.cgeneral.glanguage.addChild(DynCatArrays.lomGLanguage.getItemAt(0) as DisplayObject);
-				LOMForm.cgeneral.gdescription.addChild(new des_add());
-				LOMForm.cgeneral.gkeyword.addChild(new key_add());
+				LOMForm.cgeneral.gdescription.addChild(DynCatArrays.lomGDescription.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gkeyword.addChild(DynCatArrays.lomGKeyword.getItemAt(0) as DisplayObject);
 				LOMForm.cgeneral.gcoverage.addChild(new cov_add());
 				LOMForm.cgeneral.gstructure.addChild(new str_add());
 				LOMForm.cgeneral.gaggregationlevel.addChild(new agg_add());				

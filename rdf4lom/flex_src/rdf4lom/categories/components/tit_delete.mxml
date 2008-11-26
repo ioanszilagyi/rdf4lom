@@ -3,7 +3,9 @@
 
 	<mx:Script>
 		<![CDATA[
+			import as3.DynCatArrays;
 			private function removeComponent():void {
+				DynCatArrays.lomGTitle.removeItemAt(DynCatArrays.lomGTitle.getItemIndex(this));
 				parent.removeChild(this);
 			}
 		]]>
