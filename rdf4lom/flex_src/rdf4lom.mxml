@@ -23,6 +23,10 @@
 			}
 			
 			private function buildNewLOM():void {
+				// Clear the buffers
+				DynCatArrays.ReNewDynCatArrays();
+				removeAllChildrenFromLOM();
+
 				// Create the arrays
 				DynCatArrays.lomGIdentifier.addItem(new ide_add());
 				DynCatArrays.lomGTitle.addItem(new tit_add());
@@ -56,6 +60,18 @@
 				LOMForm.ctechnical.tsize.addChild(new siz_add())
 				LOMForm.ctechnical.tlocation.addChild(new loc_add())
 			}
+			
+			
+			private function removeAllChildrenFromLOM():void {
+				LOMForm.cgeneral.gidentifier.removeAllChildren();
+				LOMForm.cgeneral.gtitle.removeAllChildren();
+				LOMForm.cgeneral.glanguage.removeAllChildren();
+				LOMForm.cgeneral.gdescription.removeAllChildren();
+				LOMForm.cgeneral.gkeyword.removeAllChildren();
+				LOMForm.cgeneral.gcoverage.removeAllChildren();
+				LOMForm.cgeneral.gstructure.removeAllChildren();
+				LOMForm.cgeneral.gaggregationlevel.removeAllChildren();
+			}
 		]]>
 	</mx:Script>
 	
@@ -68,8 +84,8 @@
 			
 			<mx:VRule height="20"/>
 			
-			<mx:Button label="{resourceManager.getString('myResources', 'NEW')}" width="90"/>
-			<mx:Button label="{resourceManager.getString('myResources', 'OPEN')}" width="90"/>
+			<mx:Button label="{resourceManager.getString('myResources', 'NEW')}" width="90" click="buildNewLOM();"/>
+			<mx:Button label="{resourceManager.getString('myResources', 'OPEN')}" width="90" visible="false" />
 			
 			<mx:HBox horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12" width="100%" verticalAlign="middle" height="38">
 				<mx:Button icon="@Embed(source='image/logo_small.gif')" width="90" height="30"/>

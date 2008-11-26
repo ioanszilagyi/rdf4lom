@@ -8,16 +8,15 @@ package as3
 	
 	public final class DynCatArrays
 	{
-		public function DynCatArrays()
-		{
-			lomGIdentifier = new ArrayCollection();
-			lomGTitle = new ArrayCollection();
-			lomGLanguage = new ArrayCollection();
-			lomGDescription = new ArrayCollection();
-			lomGKeyword = new ArrayCollection();
-			lomGCoverage = new ArrayCollection();
-			lomGStructure = new ArrayCollection();
-			lomGAggregationLevel = new ArrayCollection();
+		public static function ReNewDynCatArrays():void {
+			lomGIdentifier.removeAll();
+			lomGTitle.removeAll();
+			lomGLanguage.removeAll();
+			lomGDescription.removeAll();
+			lomGKeyword.removeAll();
+			lomGCoverage.removeAll();
+			lomGStructure.removeAll();
+			lomGAggregationLevel.removeAll();
 		}
 		
 		// General
