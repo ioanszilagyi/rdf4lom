@@ -9,6 +9,7 @@ package as3
 	public final class DynCatArrays
 	{
 		public static function ReNewDynCatArrays():void {
+			// General
 			lomGIdentifier.removeAll();
 			lomGTitle.removeAll();
 			lomGLanguage.removeAll();
@@ -17,6 +18,11 @@ package as3
 			lomGCoverage.removeAll();
 			lomGStructure.removeAll();
 			lomGAggregationLevel.removeAll();
+			
+			// Life Cycle
+			lomLVersion.removeAll();
+			lomLStatus.removeAll();
+			lomLContribute.removeAll();
 		}
 		
 		// General
@@ -36,5 +42,13 @@ package as3
 		public static var lomGStructure:ArrayCollection = new ArrayCollection();
 		/// Aggregation Level
 		public static var lomGAggregationLevel:ArrayCollection = new ArrayCollection();
+		
+		// Life Cycle
+		/// Version
+		public static var lomLVersion:ArrayCollection = new ArrayCollection();
+		/// Status
+		public static var lomLStatus:ArrayCollection = new ArrayCollection();
+		/// Contribute
+		public static var lomLContribute:ArrayCollection = new ArrayCollection();
 	}
 }

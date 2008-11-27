@@ -28,6 +28,7 @@
 				removeAllChildrenFromLOM();
 
 				// Create the arrays
+				// General
 				DynCatArrays.lomGIdentifier.addItem(new ide_add());
 				DynCatArrays.lomGTitle.addItem(new tit_add());
 				DynCatArrays.lomGLanguage.addItem(new lan_add());
@@ -35,7 +36,12 @@
 				DynCatArrays.lomGKeyword.addItem(new key_add());
 				DynCatArrays.lomGCoverage.addItem(new cov_add());
 				DynCatArrays.lomGStructure.addItem(new str_add());
-				DynCatArrays.lomGAggregationLevel.addItem(new agg_add());				
+				DynCatArrays.lomGAggregationLevel.addItem(new agg_add());	
+				// Life Cycle
+				DynCatArrays.lomLVersion.addItem(new ver_add());
+				DynCatArrays.lomLStatus.addItem(new sta_add());
+				DynCatArrays.lomLContribute.addItem(new con_add());			
+							
 				// Create New LOM
 				// General category
 				LOMForm.cgeneral.gidentifier.addChild(DynCatArrays.lomGIdentifier.getItemAt(0) as DisplayObject);
@@ -47,9 +53,9 @@
 				LOMForm.cgeneral.gstructure.addChild(DynCatArrays.lomGStructure.getItemAt(0) as DisplayObject);
 				LOMForm.cgeneral.gaggregationlevel.addChild(DynCatArrays.lomGAggregationLevel.getItemAt(0) as DisplayObject);				
 				// Life Cycle category				
-				LOMForm.clifecycle.lversion.addChild(new ver_add());
-				LOMForm.clifecycle.lstatus.addChild(new sta_add());
-				LOMForm.clifecycle.lcontribute.addChild(new con_add());
+				LOMForm.clifecycle.lversion.addChild(DynCatArrays.lomLVersion.getItemAt(0) as DisplayObject);
+				LOMForm.clifecycle.lstatus.addChild(DynCatArrays.lomLStatus.getItemAt(0) as DisplayObject);
+				LOMForm.clifecycle.lcontribute.addChild(DynCatArrays.lomLContribute.getItemAt(0) as DisplayObject);
 				// Meta-Metadata category
 				LOMForm.cmetametadata.midentifier.addChild(new ide_add());
 				LOMForm.cmetametadata.mcontribute.addChild(new con_add());
@@ -61,8 +67,8 @@
 				LOMForm.ctechnical.tlocation.addChild(new loc_add())
 			}
 			
-			
 			private function removeAllChildrenFromLOM():void {
+				// General
 				LOMForm.cgeneral.gidentifier.removeAllChildren();
 				LOMForm.cgeneral.gtitle.removeAllChildren();
 				LOMForm.cgeneral.glanguage.removeAllChildren();
@@ -71,6 +77,11 @@
 				LOMForm.cgeneral.gcoverage.removeAllChildren();
 				LOMForm.cgeneral.gstructure.removeAllChildren();
 				LOMForm.cgeneral.gaggregationlevel.removeAllChildren();
+				
+				// Life Cycle
+				LOMForm.clifecycle.lversion.removeAllChildren();
+				LOMForm.clifecycle.lstatus.removeAllChildren();
+				LOMForm.clifecycle.lcontribute.removeAllChildren();
 			}
 		]]>
 	</mx:Script>
