@@ -19,4 +19,7 @@ public class LomCategories {
 	public String[] lomGAggregationLevel;
 	
 	// Live Cycle
+	public String[][] lomLVersion;	
+	public String[] lomLStatus;
+	public String[][] lomLContribute;
 }

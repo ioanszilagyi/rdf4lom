@@ -3,14 +3,16 @@
 
 	<mx:Script>
 		<![CDATA[
+			import as3.DynCatArrays;
 			private function removeComponent():void {
+				DynCatArrays.lomLVersion.removeItemAt(DynCatArrays.lomLVersion.getItemIndex(this));
 				parent.removeChild(this);
-			}
+			}			
 		]]>
 	</mx:Script>
-	<mx:TextInput/>
+	<mx:TextInput id="version"/>
 	<mx:VRule height="15"/>
-	<mx:ComboBox width="60" editable="true"></mx:ComboBox>
+	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
 </mx:HBox>

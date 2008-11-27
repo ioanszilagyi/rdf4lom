@@ -15,5 +15,8 @@ package as3
 		public var lomGAggregationLevel:Array = new Array();
 		
 		// Life Cycle
+		public var lomLVersion:Array = new Array();
+		public var lomLStatus: Array = new Array();
+		public var lomLContribute: Array = new Array();	
 	}
 }

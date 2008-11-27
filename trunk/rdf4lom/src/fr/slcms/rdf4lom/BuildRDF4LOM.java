@@ -9,7 +9,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * @author Radu
- *
+ * 
  */
 public class BuildRDF4LOM {
 
@@ -58,7 +58,7 @@ public class BuildRDF4LOM {
 						General.addProperty(model.createProperty(model
 								.expandPrefix("lom:isElementComponentOf")),
 								Identifier);
-						
+
 						for (int i = 0; i < lomCategories.lomGIdentifier.length; i++) {
 							Identifier.addProperty(model.createProperty(model
 									.expandPrefix("lom:catalog")),
@@ -88,7 +88,7 @@ public class BuildRDF4LOM {
 								.expandPrefix("lom:language")),
 								lomCategories.lomGLanguage[0]);
 					}
-					
+
 					// check if there is some values in Title tab
 					// Description
 					if (isValueIn(lomCategories.lomGDescription)) {
@@ -98,7 +98,7 @@ public class BuildRDF4LOM {
 									lomCategories.lomGDescription[i]);
 						}
 					}
-					
+
 					// check if there is some values in Keyword tab
 					// Keyword
 					if (isValueIn(lomCategories.lomGKeyword)) {
@@ -110,7 +110,7 @@ public class BuildRDF4LOM {
 											lomCategories.lomGKeyword[i][1]));
 						}
 					}
-					
+
 					// check if there is some values in Coverage tab
 					// Coverage
 					if (isValueIn(lomCategories.lomGCoverage)) {
@@ -122,7 +122,7 @@ public class BuildRDF4LOM {
 											lomCategories.lomGCoverage[i][1]));
 						}
 					}
-					
+
 					// check if there is some values in Structure tab
 					// Structure
 					if (isValueIn(lomCategories.lomGStructure)) {
@@ -130,7 +130,7 @@ public class BuildRDF4LOM {
 								.expandPrefix("lom:structure")),
 								lomCategories.lomGStructure[0]);
 					}
-					
+
 					// check if there is some values in Aggregation Level tab
 					// Aggregation Level
 					if (isValueIn(lomCategories.lomGAggregationLevel)) {
@@ -139,6 +139,62 @@ public class BuildRDF4LOM {
 								lomCategories.lomGAggregationLevel[0]);
 					}
 				}
+
+				// check if there is some values in Life Cycle tab
+				// ///////////// LIFE CYCLE
+				// ////////////////////////
+				if (isValueIn(lomCategories, "LifeCycle")) {
+					Resource LifeCycle = model
+							.createResource(model.createResource(model
+									.expandPrefix("lom:LifeCycle")));
+					LOM.addProperty(model.createProperty(model
+							.expandPrefix("lom:hasElement")), LifeCycle);
+
+					// check if there is some values in Version tab
+					// Version
+					if (isValueIn(lomCategories.lomLVersion)) {
+						for (int i = 0; i < lomCategories.lomLVersion.length; i++) {
+							LifeCycle.addProperty(model.createProperty(model
+									.expandPrefix("lom:version")), model
+									.createLiteral(
+											lomCategories.lomLVersion[i][0],
+											lomCategories.lomLVersion[i][1]));
+						}
+					}
+					
+					// check if there is some values in Status tab
+					// Status
+					if (isValueIn(lomCategories.lomLStatus)) {
+						LifeCycle.addProperty(model.createProperty(model
+								.expandPrefix("lom:status")),
+								lomCategories.lomLStatus[0]);
+					}
+					
+					// check if there is some values in Contribute tab
+					// Contribute
+					if (isValueIn(lomCategories.lomLContribute)) {
+						Resource Contribute = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Contribute")));
+						LifeCycle.addProperty(model.createProperty(model
+								.expandPrefix("lom:isElementComponentOf")),
+								Contribute);
+
+						for (int i = 0; i < lomCategories.lomLContribute.length; i++) {
+							Contribute.addProperty(model.createProperty(model
+									.expandPrefix("lom:role")),
+									lomCategories.lomLContribute[i][0]);
+							Contribute.addProperty(model.createProperty(model
+									.expandPrefix("lom:entity")),
+									lomCategories.lomLContribute[i][1]);
+							Contribute.addProperty(model.createProperty(model
+									.expandPrefix("lom:date")),
+									lomCategories.lomLContribute[i][2]);							
+						}
+					}					
+				}
+
+				// start writing the RDF
 				StringWriter out_test = new StringWriter();
 
 				// now write the model in XML form to a file
@@ -178,28 +234,37 @@ public class BuildRDF4LOM {
 	 * @return true if there is a non empty string into the all LOM categories
 	 */
 	private Boolean isValueIn(LomCategories lomCategories, String category) {
-
+		// if category is null then will check all the LOM categories
 		if (category == null)
+			// General
 			if (isValueIn(lomCategories.lomGIdentifier))
 				return true;
 			else if (isValueIn(lomCategories.lomGTitle))
 				return true;
 			else if (isValueIn(lomCategories.lomGLanguage))
 				return true;
-			else if (isValueIn(lomCategories.lomGDescription)) 
+			else if (isValueIn(lomCategories.lomGDescription))
 				return true;
-			else if (isValueIn(lomCategories.lomGKeyword)) 
-				return true; 
-			else if (isValueIn(lomCategories.lomGCoverage)) 
+			else if (isValueIn(lomCategories.lomGKeyword))
 				return true;
-			else if (isValueIn(lomCategories.lomGStructure)) 
+			else if (isValueIn(lomCategories.lomGCoverage))
 				return true;
-			else if (isValueIn(lomCategories.lomGAggregationLevel)) 
+			else if (isValueIn(lomCategories.lomGStructure))
+				return true;
+			else if (isValueIn(lomCategories.lomGAggregationLevel))
+				return true;
+			// Life Cycle
+			else if (isValueIn(lomCategories.lomLVersion))
+				return true;
+			else if (isValueIn(lomCategories.lomLStatus))
+				return true;
+			else if (isValueIn(lomCategories.lomLContribute))
 				return true;		
 			else
 				return false;
 		else
 			switch (Categories.valueOf(category)) {
+			// check the General category
 			case General: {
 				if (isValueIn(lomCategories.lomGIdentifier))
 					return true;
@@ -211,12 +276,24 @@ public class BuildRDF4LOM {
 					return true;
 				else if (isValueIn(lomCategories.lomGKeyword))
 					return true;
-				else if (isValueIn(lomCategories.lomGCoverage))					
+				else if (isValueIn(lomCategories.lomGCoverage))
 					return true;
 				else if (isValueIn(lomCategories.lomGStructure))
 					return true;
 				else if (isValueIn(lomCategories.lomGAggregationLevel))
+					return true;				
+				else
+					return false;
+			}
+			case LifeCycle: {
+				if (isValueIn(lomCategories.lomLVersion))
 					return true;
+				if (isValueIn(lomCategories.lomLStatus))
+					return true;				
+				if (isValueIn(lomCategories.lomLContribute))
+					return true;
+				else
+					return false;
 			}
 			default:
 				return false;

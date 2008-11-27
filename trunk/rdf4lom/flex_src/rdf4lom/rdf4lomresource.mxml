@@ -36,26 +36,37 @@
                	for (i=0; i<DynCatArrays.lomGTitle.length; i++) {
                  	passLomObj.lomGTitle.push(new Array(DynCatArrays.lomGTitle[i].title.text, DynCatArrays.lomGTitle[i].lang.text));
                 }
-                // Language
+                /// Language
                 passLomObj.lomGLanguage.push(DynCatArrays.lomGLanguage[0].lang.text);
-                // Description
+                /// Description
                	for (i=0; i<DynCatArrays.lomGDescription.length; i++) {
                  	passLomObj.lomGDescription.push(DynCatArrays.lomGDescription[i].description.text);
                 } 
-                // Keyword               
+                /// Keyword               
                	for (i=0; i<DynCatArrays.lomGKeyword.length; i++) {
                  	passLomObj.lomGKeyword.push(new Array(DynCatArrays.lomGKeyword[i].keyword.text, DynCatArrays.lomGKeyword[i].lang.text));
                 }
-                // Coverage               
+                /// Coverage               
                	for (i=0; i<DynCatArrays.lomGCoverage.length; i++) {
                  	passLomObj.lomGCoverage.push(new Array(DynCatArrays.lomGCoverage[i].coverage.text, DynCatArrays.lomGCoverage[i].lang.text));
                 }
-                // Structure
+                /// Structure
                 passLomObj.lomGStructure.push(DynCatArrays.lomGStructure[0].structure.text);   
-                // Aggregation Level
+                /// Aggregation Level
                 passLomObj.lomGAggregationLevel.push(DynCatArrays.lomGAggregationLevel[0].agg_level.text);
                 
-                             
+                // Life Cycle
+                /// Version
+                for (i=0; i<DynCatArrays.lomLVersion.length; i++) {
+                 	passLomObj.lomLVersion.push(new Array(DynCatArrays.lomLVersion[i].version.text, DynCatArrays.lomLVersion[i].lang.text));
+                }
+                /// Status
+                passLomObj.lomLStatus.push(DynCatArrays.lomLStatus[0].status.text);
+				/// Contribute  
+               	for (i=0; i<DynCatArrays.lomLContribute.length; i++) {
+                 	passLomObj.lomLContribute.push(new Array(DynCatArrays.lomLContribute[i].role.text, DynCatArrays.lomLContribute[i].entity.text, DynCatArrays.lomLContribute[i].date.text));
+                }
+
                 //////////////////////////////////////////////
             	// the example of the object sended to java //
             	//////////////////////////////////////////////   
