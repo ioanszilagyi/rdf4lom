@@ -18,5 +18,11 @@ package as3
 		public var lomLVersion:Array = new Array();
 		public var lomLStatus: Array = new Array();
 		public var lomLContribute: Array = new Array();	
+		
+		// Meta-Metadata
+		public var lomMIdentifier:Array = new Array();	
+		public var lomMContribute:Array = new Array();
+		public var lomMMetadataSchema:Array = new Array();
+		public var lomMLanguage:Array = new Array();
 	}
 }

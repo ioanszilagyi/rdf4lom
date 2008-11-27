@@ -10,9 +10,15 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import rdf4lom.categories.metametadata;
+			import rdf4lom.categories.general;
+			import mx.collections.ArrayCollection;
 			import as3.DynCatArrays;
 			import mx.controls.Alert;					
-			import rdf4lom.categories.components.*;
+			import rdf4lom.categories.components.general.*;
+			import rdf4lom.categories.components.lifecycle.*;
+			import rdf4lom.categories.components.metametadata.*;
+			import rdf4lom.categories.components.technical.*;
 			
 			private function inEN():void {
 				resourceManager.localeChain = [ "en_US" ];		
@@ -29,19 +35,24 @@
 
 				// Create the arrays
 				// General
-				DynCatArrays.lomGIdentifier.addItem(new ide_add());
-				DynCatArrays.lomGTitle.addItem(new tit_add());
-				DynCatArrays.lomGLanguage.addItem(new lan_add());
-				DynCatArrays.lomGDescription.addItem(new des_add());
-				DynCatArrays.lomGKeyword.addItem(new key_add());
-				DynCatArrays.lomGCoverage.addItem(new cov_add());
-				DynCatArrays.lomGStructure.addItem(new str_add());
-				DynCatArrays.lomGAggregationLevel.addItem(new agg_add());	
+				DynCatArrays.lomGIdentifier.addItem(new g_ide_add());
+				DynCatArrays.lomGTitle.addItem(new g_tit_add());
+				DynCatArrays.lomGLanguage.addItem(new g_lan_add());
+				DynCatArrays.lomGDescription.addItem(new g_des_add());
+				DynCatArrays.lomGKeyword.addItem(new g_key_add());
+				DynCatArrays.lomGCoverage.addItem(new g_cov_add());
+				DynCatArrays.lomGStructure.addItem(new g_str_add());
+				DynCatArrays.lomGAggregationLevel.addItem(new g_agg_add());	
 				// Life Cycle
-				DynCatArrays.lomLVersion.addItem(new ver_add());
-				DynCatArrays.lomLStatus.addItem(new sta_add());
-				DynCatArrays.lomLContribute.addItem(new con_add());			
-							
+				DynCatArrays.lomLVersion.addItem(new l_ver_add());
+				DynCatArrays.lomLStatus.addItem(new l_sta_add());
+				DynCatArrays.lomLContribute.addItem(new l_con_add());	
+				// Meta-Metadata		
+				DynCatArrays.lomMIdentifier.addItem(new m_ide_add());
+				DynCatArrays.lomMContribute.addItem(new m_con_add());
+				DynCatArrays.lomMMetadataSchema.addItem(new m_met_add());
+				DynCatArrays.lomMLanguage.addItem(new m_lan_add());
+				
 				// Create New LOM
 				// General category
 				LOMForm.cgeneral.gidentifier.addChild(DynCatArrays.lomGIdentifier.getItemAt(0) as DisplayObject);
@@ -57,14 +68,14 @@
 				LOMForm.clifecycle.lstatus.addChild(DynCatArrays.lomLStatus.getItemAt(0) as DisplayObject);
 				LOMForm.clifecycle.lcontribute.addChild(DynCatArrays.lomLContribute.getItemAt(0) as DisplayObject);
 				// Meta-Metadata category
-				LOMForm.cmetametadata.midentifier.addChild(new ide_add());
-				LOMForm.cmetametadata.mcontribute.addChild(new con_add());
-				LOMForm.cmetametadata.mmetadataschema.addChild(new met_add());
-				LOMForm.cmetametadata.mlanguage.addChild(new lan_add());
+				LOMForm.cmetametadata.midentifier.addChild(DynCatArrays.lomMIdentifier.getItemAt(0) as DisplayObject);
+				LOMForm.cmetametadata.mcontribute.addChild(DynCatArrays.lomMContribute.getItemAt(0) as DisplayObject);
+				LOMForm.cmetametadata.mmetadataschema.addChild(DynCatArrays.lomMMetadataSchema.getItemAt(0) as DisplayObject);
+				LOMForm.cmetametadata.mlanguage.addChild(DynCatArrays.lomMLanguage.getItemAt(0) as DisplayObject);
 				// Technical category
-				LOMForm.ctechnical.tformat.addChild(new for_add());
-				LOMForm.ctechnical.tsize.addChild(new siz_add())
-				LOMForm.ctechnical.tlocation.addChild(new loc_add())
+				LOMForm.ctechnical.tformat.addChild(new t_for_add());
+				LOMForm.ctechnical.tsize.addChild(new t_siz_add())
+				LOMForm.ctechnical.tlocation.addChild(new t_loc_add())
 			}
 			
 			private function removeAllChildrenFromLOM():void {
@@ -82,6 +93,12 @@
 				LOMForm.clifecycle.lversion.removeAllChildren();
 				LOMForm.clifecycle.lstatus.removeAllChildren();
 				LOMForm.clifecycle.lcontribute.removeAllChildren();
+				
+				// Meta-Metadata
+				LOMForm.cmetametadata.midentifier.removeAllChildren();
+				LOMForm.cmetametadata.mcontribute.removeAllChildren();
+				LOMForm.cmetametadata.mmetadataschema.removeAllChildren();
+				LOMForm.cmetametadata.mlanguage.removeAllChildren();
 			}
 		]]>
 	</mx:Script>

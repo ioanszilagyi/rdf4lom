@@ -23,6 +23,12 @@ package as3
 			lomLVersion.removeAll();
 			lomLStatus.removeAll();
 			lomLContribute.removeAll();
+			
+			// Meta-Metadata
+			lomMIdentifier.removeAll();
+			lomMContribute.removeAll();
+			lomMMetadataSchema.removeAll();
+			lomMLanguage.removeAll();
 		}
 		
 		// General
@@ -50,5 +56,15 @@ package as3
 		public static var lomLStatus:ArrayCollection = new ArrayCollection();
 		/// Contribute
 		public static var lomLContribute:ArrayCollection = new ArrayCollection();
+		
+		// Meta-Metadata
+		/// Identifier
+		public static var lomMIdentifier:ArrayCollection = new ArrayCollection();
+		/// Contribute
+		public static var lomMContribute:ArrayCollection = new ArrayCollection();
+		/// MetadataSchema
+		public static var lomMMetadataSchema:ArrayCollection = new ArrayCollection();
+		/// Language
+		public static var lomMLanguage:ArrayCollection = new ArrayCollection();		
 	}
 }

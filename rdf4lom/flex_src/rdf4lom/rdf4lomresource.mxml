@@ -54,7 +54,7 @@
                 passLomObj.lomGStructure.push(DynCatArrays.lomGStructure[0].structure.text);   
                 /// Aggregation Level
                 passLomObj.lomGAggregationLevel.push(DynCatArrays.lomGAggregationLevel[0].agg_level.text);
-                
+                ///////////////////////////////////
                 // Life Cycle
                 /// Version
                 for (i=0; i<DynCatArrays.lomLVersion.length; i++) {
@@ -66,7 +66,25 @@
                	for (i=0; i<DynCatArrays.lomLContribute.length; i++) {
                  	passLomObj.lomLContribute.push(new Array(DynCatArrays.lomLContribute[i].role.text, DynCatArrays.lomLContribute[i].entity.text, DynCatArrays.lomLContribute[i].date.text));
                 }
-
+                ///////////////////////////////////
+                // Meta-Metadata
+                /// Identifier
+                for (i=0; i<DynCatArrays.lomMIdentifier.length; i++) {
+                 	passLomObj.lomMIdentifier.push(new Array(DynCatArrays.lomMIdentifier[i].catalog.text, DynCatArrays.lomMIdentifier[i].entry.text));
+                }
+				/// Contribute  
+               	for (i=0; i<DynCatArrays.lomMContribute.length; i++) {
+                 	passLomObj.lomMContribute.push(new Array(DynCatArrays.lomMContribute[i].role.text, DynCatArrays.lomMContribute[i].entity.text, DynCatArrays.lomMContribute[i].date.text));
+                }
+                /// Metadata Schema
+                for (i=0; i<DynCatArrays.lomMMetadataSchema.length; i++) {
+                	passLomObj.lomMMetadataSchema.push(DynCatArrays.lomMMetadataSchema[i].metadataschema.text);
+                }
+                /// Language
+                passLomObj.lomMLanguage.push(DynCatArrays.lomMLanguage[0].lang.text);
+                
+                
+                
                 //////////////////////////////////////////////
             	// the example of the object sended to java //
             	//////////////////////////////////////////////   

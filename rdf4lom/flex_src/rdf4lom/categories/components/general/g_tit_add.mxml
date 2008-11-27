@@ -5,13 +5,13 @@
 		<![CDATA[
 			import as3.DynCatArrays;
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new ver_delete();
-				DynCatArrays.lomLVersion.addItem(theDisObj);
+				var theDisObj:DisplayObject = new g_tit_delete();
+				DynCatArrays.lomGTitle.addItem(theDisObj);
 				parent.addChild(theDisObj);
-			}			
+			}
 		]]>
 	</mx:Script>
-	<mx:TextInput id="version"/>
+	<mx:TextInput id="title"/>
 	<mx:VRule height="15"/>
 	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
 	<mx:VRule height="15"/>
