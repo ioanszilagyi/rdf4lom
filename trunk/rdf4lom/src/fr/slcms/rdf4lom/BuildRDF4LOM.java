@@ -81,7 +81,7 @@ public class BuildRDF4LOM {
 						}
 					}
 
-					// check if there is some values in Title tab
+					// check if there is some values in Language tab
 					// Language
 					if (isValueIn(lomCategories.lomGLanguage)) {
 						General.addProperty(model.createProperty(model
@@ -161,7 +161,7 @@ public class BuildRDF4LOM {
 											lomCategories.lomLVersion[i][1]));
 						}
 					}
-					
+
 					// check if there is some values in Status tab
 					// Status
 					if (isValueIn(lomCategories.lomLStatus)) {
@@ -169,7 +169,7 @@ public class BuildRDF4LOM {
 								.expandPrefix("lom:status")),
 								lomCategories.lomLStatus[0]);
 					}
-					
+
 					// check if there is some values in Contribute tab
 					// Contribute
 					if (isValueIn(lomCategories.lomLContribute)) {
@@ -189,9 +189,81 @@ public class BuildRDF4LOM {
 									lomCategories.lomLContribute[i][1]);
 							Contribute.addProperty(model.createProperty(model
 									.expandPrefix("lom:date")),
-									lomCategories.lomLContribute[i][2]);							
+									lomCategories.lomLContribute[i][2]);
 						}
-					}					
+					}
+				}
+
+				// check if there is some values in Meta-Metadata tab
+				// ///////////// META-METADATA
+				// ////////////////////////
+				if (isValueIn(lomCategories, "MetaMetadata")) {
+					Resource MetaMetadata = model.createResource(model
+							.createResource(model
+									.expandPrefix("lom:MetaMetadata")));
+					LOM.addProperty(model.createProperty(model
+							.expandPrefix("lom:hasElement")), MetaMetadata);
+
+					// check if there is some values in Identifier tab
+					// Identifier
+					if (isValueIn(lomCategories.lomMIdentifier)) {
+						Resource Identifier = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Identifier")));
+						MetaMetadata.addProperty(model.createProperty(model
+								.expandPrefix("lom:isElementComponentOf")),
+								Identifier);
+
+						for (int i = 0; i < lomCategories.lomMIdentifier.length; i++) {
+							Identifier.addProperty(model.createProperty(model
+									.expandPrefix("lom:catalog")),
+									lomCategories.lomMIdentifier[i][0]);
+							Identifier.addProperty(model.createProperty(model
+									.expandPrefix("lom:entry")),
+									lomCategories.lomMIdentifier[i][1]);
+						}
+					}
+
+					// check if there is some values in Contribute tab
+					// Contribute
+					if (isValueIn(lomCategories.lomMContribute)) {
+						Resource Contribute = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Contribute")));
+						MetaMetadata.addProperty(model.createProperty(model
+								.expandPrefix("lom:isElementComponentOf")),
+								Contribute);
+
+						for (int i = 0; i < lomCategories.lomMContribute.length; i++) {
+							Contribute.addProperty(model.createProperty(model
+									.expandPrefix("lom:role")),
+									lomCategories.lomMContribute[i][0]);
+							Contribute.addProperty(model.createProperty(model
+									.expandPrefix("lom:entity")),
+									lomCategories.lomMContribute[i][1]);
+							Contribute.addProperty(model.createProperty(model
+									.expandPrefix("lom:date")),
+									lomCategories.lomMContribute[i][2]);
+						}
+					}
+
+					// check if there is some values in Metadata Schema tab
+					// Metadata Schema
+					if (isValueIn(lomCategories.lomMMetadataSchema)) {
+						for (int i = 0; i < lomCategories.lomMMetadataSchema.length; i++) {
+							MetaMetadata.addProperty(model.createProperty(model
+									.expandPrefix("lom:metadataSchema")),
+									lomCategories.lomMMetadataSchema[i]);
+						}
+					}
+
+					// check if there is some values in Language tab
+					// Language
+					if (isValueIn(lomCategories.lomMLanguage)) {
+						MetaMetadata.addProperty(model.createProperty(model
+								.expandPrefix("lom:language")),
+								lomCategories.lomMLanguage[0]);
+					}
 				}
 
 				// start writing the RDF
@@ -259,7 +331,16 @@ public class BuildRDF4LOM {
 			else if (isValueIn(lomCategories.lomLStatus))
 				return true;
 			else if (isValueIn(lomCategories.lomLContribute))
-				return true;		
+				return true;
+			// Meta-Metadata
+			else if (isValueIn(lomCategories.lomMIdentifier))
+				return true;
+			else if (isValueIn(lomCategories.lomMContribute))
+				return true;
+			else if (isValueIn(lomCategories.lomMMetadataSchema))
+				return true;
+			else if (isValueIn(lomCategories.lomMLanguage))
+				return true;
 			else
 				return false;
 		else
@@ -281,16 +362,28 @@ public class BuildRDF4LOM {
 				else if (isValueIn(lomCategories.lomGStructure))
 					return true;
 				else if (isValueIn(lomCategories.lomGAggregationLevel))
-					return true;				
+					return true;
 				else
 					return false;
 			}
 			case LifeCycle: {
 				if (isValueIn(lomCategories.lomLVersion))
 					return true;
-				if (isValueIn(lomCategories.lomLStatus))
-					return true;				
-				if (isValueIn(lomCategories.lomLContribute))
+				else if (isValueIn(lomCategories.lomLStatus))
+					return true;
+				else if (isValueIn(lomCategories.lomLContribute))
+					return true;
+				else
+					return false;
+			}
+			case MetaMetadata: {
+				if (isValueIn(lomCategories.lomMIdentifier))
+					return true;
+				else if (isValueIn(lomCategories.lomMContribute))
+					return true;
+				else if (isValueIn(lomCategories.lomMMetadataSchema))
+					return true;
+				else if (isValueIn(lomCategories.lomMLanguage))
 					return true;
 				else
 					return false;

@@ -22,4 +22,10 @@ public class LomCategories {
 	public String[][] lomLVersion;	
 	public String[] lomLStatus;
 	public String[][] lomLContribute;
+	
+	// Meta-Metadata
+	public String[][] lomMIdentifier;	
+	public String[][] lomMContribute;
+	public String[] lomMMetadataSchema;
+	public String[] lomMLanguage;
 }

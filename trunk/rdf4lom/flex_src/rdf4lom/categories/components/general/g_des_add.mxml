@@ -5,7 +5,7 @@
 		<![CDATA[
 			import as3.DynCatArrays;
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new des_delete();
+				var theDisObj:DisplayObject = new g_des_delete();
 				DynCatArrays.lomGDescription.addItem(theDisObj);
 				parent.addChild(theDisObj);
 			}

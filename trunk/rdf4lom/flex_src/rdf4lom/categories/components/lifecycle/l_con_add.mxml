@@ -7,9 +7,10 @@
 	-->
 	<mx:Script>
 		<![CDATA[
-			import as3.DynCatArrays;
+			import as3.DynCatArrays;			
+			
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new con_delete();
+				var theDisObj:DisplayObject = new l_con_delete();
 				DynCatArrays.lomLContribute.addItem(theDisObj);
 				parent.addChild(theDisObj);
 			}			

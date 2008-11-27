@@ -4,7 +4,7 @@
 	<mx:Script>
 		<![CDATA[
 			private function addComponent():void {
-				parent.addChild(new loc_delete());
+				parent.addChild(new t_loc_delete());
 			}
 		]]>
 	</mx:Script>

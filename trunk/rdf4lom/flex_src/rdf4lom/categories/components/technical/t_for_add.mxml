@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle">
-	
+
 	<mx:Script>
 		<![CDATA[
 			private function addComponent():void {
-				parent.addChild(new met_delete());
+				parent.addChild(new t_for_delete());
 			}
 		]]>
 	</mx:Script>
-	<mx:ComboBox editable="true"></mx:ComboBox>
+	<mx:CheckBox label="non-digital"/>
 	<mx:VRule height="15"/>
-	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>
+	<mx:TextInput/>
+	<mx:VRule height="15"/>
+	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
 </mx:HBox>

@@ -7,9 +7,11 @@
 	-->
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import as3.DynCatArrays;
+			
 			private function removeComponent():void {
-				DynCatArrays.lomLContribute.removeItemAt(DynCatArrays.lomLContribute.getItemIndex(this));
+				DynCatArrays.lomMContribute.removeItemAt(DynCatArrays.lomMContribute.getItemIndex(this));
 				parent.removeChild(this);
 			}
 		]]>

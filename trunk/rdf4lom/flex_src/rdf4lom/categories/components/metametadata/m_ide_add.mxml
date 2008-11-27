@@ -5,15 +5,18 @@
 		<![CDATA[
 			import as3.DynCatArrays;
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new key_delete();
-				DynCatArrays.lomGKeyword.addItem(theDisObj);
+				var theDisObj:DisplayObject = new m_ide_delete();
+				DynCatArrays.lomMIdentifier.addItem(theDisObj);
 				parent.addChild(theDisObj);
 			}
 		]]>
 	</mx:Script>
-	<mx:TextInput id="keyword"/>
+	
+	<mx:Label text="{resourceManager.getString('myResources', 'CATALOG')}"/>
+	<mx:TextInput id="catalog"/>
 	<mx:VRule height="15"/>
-	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
+	<mx:Label text="{resourceManager.getString('myResources', 'ENTRY')}"/>
+	<mx:TextInput id="entry"/>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
 </mx:HBox>
