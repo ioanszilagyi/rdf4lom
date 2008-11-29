@@ -7,6 +7,8 @@
     
 	<mx:Script>      
         <![CDATA[
+        	import rdf4lom.categories.components.technical.t_orc_delete;
+        	import rdf4lom.categories.components.technical.t_req_delete;
         	import as3.LomCategories;
         	import as3.DynCatArrays;
         
@@ -82,7 +84,34 @@
                 }
                 /// Language
                 passLomObj.lomMLanguage.push(DynCatArrays.lomMLanguage[0].lang.text);
-                
+                ///////////////////////////////////
+                // Technical
+                /// Format
+                for (i=0; i<DynCatArrays.lomTFormat.length; i++) {
+                	if (DynCatArrays.lomTFormat[i].format_nd.selected == true) {
+                		passLomObj.lomTFormat.push(DynCatArrays.lomTFormat[i].format_nd.label);	
+                	} else {
+                		passLomObj.lomTFormat.push(DynCatArrays.lomTFormat[i].format.text);
+                	}
+                }
+                /// Size
+                passLomObj.lomTSize.push(DynCatArrays.lomTSize[0].size.text);
+                /// Location
+                for (i=0; i<DynCatArrays.lomTLocation.length; i++) {           
+                	passLomObj.lomTLocation.push(DynCatArrays.lomTLocation[i].location.text);                
+                }
+                /// Requirement  
+               	for (i=0; i<DynCatArrays.lomTRequirement.length; i++) {
+               		var theReqArray:Array = new Array();               		
+               		for (var j:int=0; j<(DynCatArrays.lomTRequirement[i] as t_req_delete).torcomposite.getChildren().length; j++) {
+               			theReqArray.push(new Array(
+               				(((DynCatArrays.lomTRequirement[i] as t_req_delete).torcomposite.getChildren()[j]) as t_orc_delete).type.text,
+               				(((DynCatArrays.lomTRequirement[i] as t_req_delete).torcomposite.getChildren()[j]) as t_orc_delete).tname.text,
+               				(((DynCatArrays.lomTRequirement[i] as t_req_delete).torcomposite.getChildren()[j]) as t_orc_delete).minver.text,
+               				(((DynCatArrays.lomTRequirement[i] as t_req_delete).torcomposite.getChildren()[j]) as t_orc_delete).maxver.text));	
+               		}
+               		passLomObj.lomTRequierment.push(theReqArray);                 
+                }
                 
                 
                 //////////////////////////////////////////////

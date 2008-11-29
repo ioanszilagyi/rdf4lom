@@ -3,14 +3,17 @@
 
 	<mx:Script>
 		<![CDATA[
+			import as3.DynCatArrays;
 			private function addComponent():void {
-				parent.addChild(new t_for_delete());
-			}
+				var theDisObj:DisplayObject = new t_for_delete();
+				DynCatArrays.lomTFormat.addItem(theDisObj);
+				parent.addChild(theDisObj);
+			}			
 		]]>
 	</mx:Script>
-	<mx:CheckBox label="non-digital"/>
+	<mx:CheckBox id="format_nd" label="non-digital"/>
 	<mx:VRule height="15"/>
-	<mx:TextInput/>
+	<mx:TextInput id="format"/>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
 </mx:HBox>

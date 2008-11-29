@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'TECHNICAL')}">
-		
+	<mx:Script>
+		<![CDATA[
+			import rdf4lom.categories.components.technical.t_req_delete;			
+
+			import as3.DynCatArrays;
+			private function addComponent():void {
+				var theDisObj:DisplayObject = new t_req_delete();				
+				DynCatArrays.lomTRequirement.addItem(theDisObj);
+				trequirement.addChild(theDisObj);
+			}
+		]]>
+	</mx:Script>
+	
 	<mx:Style source="rdf4lom/css/style.css" />
     
 	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
 		<mx:VBox label="4.1 {resourceManager.getString('myResources', 'FORMAT')}" id="tformat" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
 		<mx:VBox label="4.2 {resourceManager.getString('myResources', 'SIZE')}" id="tsize" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
 		<mx:VBox label="4.3 {resourceManager.getString('myResources', 'LOCATION')}" id="tlocation" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
-		<mx:VBox label="4.4 {resourceManager.getString('myResources', 'REQUIREMENT')}" id="trequirement" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="4.4 {resourceManager.getString('myResources', 'REQUIREMENT')}" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" backgroundColor="#F0F0F0">
+			<mx:VBox width="100%" height="100%">				
+				<mx:HBox>
+					<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>
+					<mx:TabBar dataProvider="trequirement" direction="horizontal" />							
+				</mx:HBox>
+				<mx:ViewStack id="trequirement" height="100%" width="100%" creationPolicy="all" />
+			</mx:VBox>
+		</mx:VBox>	
 		<mx:VBox label="4.5 {resourceManager.getString('myResources', 'INSTALLATIONREMARKS')}" id="tinstallationremarks" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
 		<mx:VBox label="4.6 {resourceManager.getString('myResources', 'OTHERPLATFORMREQUIREMENTS')}" id="totherplatformrequirements" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
 		<mx:VBox label="4.7 {resourceManager.getString('myResources', 'DURATION')}" id="tduration" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />

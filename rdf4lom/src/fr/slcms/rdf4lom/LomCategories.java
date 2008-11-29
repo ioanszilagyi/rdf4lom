@@ -28,4 +28,13 @@ public class LomCategories {
 	public String[][] lomMContribute;
 	public String[] lomMMetadataSchema;
 	public String[] lomMLanguage;
+	
+	// Technical
+	public String[] lomTFormat;	
+	public String[] lomTSize;
+	public String[] lomTLocation;
+	public String[][][] lomTRequierment;
+	public String[][] lomTInstalationRemarks;
+	public String[][] lomTOtherPlathormRequrements;
+	public String[][] lomTDuration;
 }
