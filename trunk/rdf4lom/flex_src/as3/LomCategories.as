@@ -33,5 +33,8 @@ package as3
 		public var lomTInstalationRemarks:Array = new Array();
 		public var lomTOtherPlathormRequrements:Array = new Array();
 		public var lomTDuration:Array = new Array();
+		
+		// Educational
+		public var lomEEducational = new Array();	
 	}
 }

@@ -60,6 +60,8 @@
 				DynCatArrays.lomTInstallationRemarks.addItem(new t_ins_add());
 				DynCatArrays.lomTOtherPlatformRequirements.addItem(new t_oth_add());
 				DynCatArrays.lomTDuration.addItem(new t_dur_add());
+				// Educational
+				DynCatArrays.lomEEducational.addItem(new e_edu_delete());
 				
 				// Create New LOM
 				// General category
@@ -89,7 +91,7 @@
 				LOMForm.ctechnical.totherplatformrequirements.addChild(DynCatArrays.lomTOtherPlatformRequirements.getItemAt(0) as DisplayObject);
 				LOMForm.ctechnical.tduration.addChild(DynCatArrays.lomTDuration.getItemAt(0) as DisplayObject);
 				// Educational
-				LOMForm.ceducational.vseducational.addChild(new e_edu_delete());
+				LOMForm.ceducational.vseducational.addChild(DynCatArrays.lomEEducational.getItemAt(0) as DisplayObject);
 			}
 			
 			private function removeAllChildrenFromLOM():void {
@@ -123,7 +125,9 @@
 				LOMForm.ctechnical.totherplatformrequirements.removeAllChildren();
 				LOMForm.ctechnical.tduration.removeAllChildren();
 				
-
+				// Educational
+				LOMForm.ceducational.vseducational.removeAllChildren();
+				
 			}
 		]]>
 	</mx:Script>

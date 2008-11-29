@@ -37,4 +37,7 @@ public class LomCategories {
 	public String[][] lomTInstalationRemarks;
 	public String[][] lomTOtherPlathormRequrements;
 	public String[][] lomTDuration;
+	
+	// Educational
+	public String[][][][] lomEEducational;	
 }
