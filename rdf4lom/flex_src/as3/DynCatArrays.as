@@ -41,6 +41,12 @@ package as3
 			
 			// Edicational
 			lomEEducational.removeAll();
+			
+			// Rights
+			lomRCost.removeAll();
+			lomRCopyrightAndOtherRestrictions.removeAll();
+			lomRDescription.removeAll();
+			
 		}
 		
 		// General
@@ -96,7 +102,14 @@ package as3
 		public static var lomTDuration:ArrayCollection = new ArrayCollection();		
 		
 		// Educational
-		///
 		public static var lomEEducational:ArrayCollection = new ArrayCollection();
+		
+		// Rights
+		/// Cost
+		public static var lomRCost:ArrayCollection = new ArrayCollection();
+		/// Copyright And Other Restrictions
+		public static var lomRCopyrightAndOtherRestrictions:ArrayCollection = new ArrayCollection();
+		/// Descriotion
+		public static var lomRDescription:ArrayCollection = new ArrayCollection();
 	}
 }

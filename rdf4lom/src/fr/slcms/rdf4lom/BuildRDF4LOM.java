@@ -89,7 +89,7 @@ public class BuildRDF4LOM {
 								lomCategories.lomGLanguage[0]);
 					}
 
-					// check if there is some values in Title tab
+					// check if there is some values in Description tab
 					// Description
 					if (isValueIn(lomCategories.lomGDescription)) {
 						for (int i = 0; i < lomCategories.lomGDescription.length; i++) {
@@ -450,7 +450,7 @@ public class BuildRDF4LOM {
 																lomCategories.lomEEducational[i][6][j][1]));
 							}
 						}
-						
+
 						// check if there is some values in Difficulty tab
 						// Difficulty
 						if (isValueIn(lomCategories.lomEEducational[i][7])) {
@@ -459,8 +459,9 @@ public class BuildRDF4LOM {
 									lomCategories.lomEEducational[i][7][0][0]);
 
 						}
-						
-						// check if there is some values in Typical Learning Time tab
+
+						// check if there is some values in Typical Learning
+						// Time tab
 						// Typical Learning Time
 						if (isValueIn(lomCategories.lomEEducational[i][8])) {
 							Educational.addProperty(model.createProperty(model
@@ -468,7 +469,7 @@ public class BuildRDF4LOM {
 									lomCategories.lomEEducational[i][8][0][0]);
 
 						}
-						
+
 						// check if there is some values in Description tab
 						// Description
 						if (isValueIn(lomCategories.lomEEducational[i][9])) {
@@ -484,7 +485,7 @@ public class BuildRDF4LOM {
 																lomCategories.lomEEducational[i][9][j][1]));
 							}
 						}
-						
+
 						// check if there is some values in Language tab
 						// Language
 						if (isValueIn(lomCategories.lomEEducational[i][10])) {
@@ -496,6 +497,52 @@ public class BuildRDF4LOM {
 																.expandPrefix("lom:language")),
 												lomCategories.lomEEducational[i][10][j][0]);
 							}
+						}
+					}
+				}
+
+				// check if there is some values in Rights tab
+				// ///////////// RIGHTS
+				// ////////////////////////
+				if (isValueIn(lomCategories, "Rights")) {
+					Resource Rights = model.createResource(model
+							.createResource(model.expandPrefix("lom:Rights")));
+					LOM.addProperty(model.createProperty(model
+							.expandPrefix("lom:hasElement")), Rights);
+
+					// check if there is some values in Cost tab
+					// Cost
+					if (isValueIn(lomCategories.lomRCost)) {
+						Rights.addProperty(model.createProperty(model
+								.expandPrefix("lom:cost")),
+								lomCategories.lomRCost[0]);
+					}
+
+					// check if there is some values in Copyright And Other
+					// Restriction tab
+					// Copyright And Other Restriction
+					if (isValueIn(lomCategories.lomRCopyrightAndOtherRestriction)) {
+						Rights
+								.addProperty(
+										model
+												.createProperty(model
+														.expandPrefix("lom:copyrightAndOtherRestriction")),
+										lomCategories.lomRCopyrightAndOtherRestriction[0]);
+					}
+
+					// check if there is some values in Description tab
+					// Description
+					if (isValueIn(lomCategories.lomRDescription)) {
+						for (int i = 0; i < lomCategories.lomRDescription.length; i++) {
+							Rights
+									.addProperty(
+											model
+													.createProperty(model
+															.expandPrefix("lom:description")),
+											model
+													.createLiteral(
+															lomCategories.lomRDescription[i][0],
+															lomCategories.lomRDescription[i][1]));
 						}
 					}
 				}
@@ -587,6 +634,13 @@ public class BuildRDF4LOM {
 			// Educational
 			else if (isValueIn(lomCategories.lomEEducational))
 				return true;
+			// Rights
+			else if (isValueIn(lomCategories.lomRCost))
+				return true;
+			else if (isValueIn(lomCategories.lomRCopyrightAndOtherRestriction))
+				return true;
+			else if (isValueIn(lomCategories.lomRDescription))
+				return true;
 			else
 				return false;
 		else
@@ -648,6 +702,16 @@ public class BuildRDF4LOM {
 			}
 			case Educational: {
 				if (isValueIn(lomCategories.lomEEducational))
+					return true;
+				else
+					return false;
+			}
+			case Rights: {
+				if (isValueIn(lomCategories.lomRCost))
+					return true;
+				else if (isValueIn(lomCategories.lomRCopyrightAndOtherRestriction))
+					return true;
+				else if (isValueIn(lomCategories.lomRDescription))
 					return true;
 				else
 					return false;
