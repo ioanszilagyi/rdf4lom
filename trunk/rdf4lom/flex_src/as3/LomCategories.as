@@ -24,5 +24,14 @@ package as3
 		public var lomMContribute:Array = new Array();
 		public var lomMMetadataSchema:Array = new Array();
 		public var lomMLanguage:Array = new Array();
+		
+		// Technical
+		public var lomTFormat:Array = new Array();	
+		public var lomTSize:Array = new Array();
+		public var lomTLocation:Array = new Array();
+		public var lomTRequierment:Array = new Array();		
+		public var lomTInstalationRemarks:Array = new Array();
+		public var lomTOtherPlathormRequrements:Array = new Array();
+		public var lomTDuration:Array = new Array();
 	}
 }

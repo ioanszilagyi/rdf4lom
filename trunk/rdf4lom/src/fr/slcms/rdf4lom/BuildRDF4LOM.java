@@ -266,6 +266,93 @@ public class BuildRDF4LOM {
 					}
 				}
 
+				// check if there is some values in Technical tab
+				// ///////////// TECHNICAL
+				// ////////////////////////
+				if (isValueIn(lomCategories, "Technical")) {
+					Resource Techincal = model
+							.createResource(model.createResource(model
+									.expandPrefix("lom:Technical")));
+					LOM.addProperty(model.createProperty(model
+							.expandPrefix("lom:hasElement")), Techincal);
+
+					// check if there is some values in Format tab
+					// Format
+					if (isValueIn(lomCategories.lomTFormat)) {
+						for (int i = 0; i < lomCategories.lomTFormat.length; i++) {
+							Techincal.addProperty(model.createProperty(model
+									.expandPrefix("lom:format")),
+									lomCategories.lomTFormat[i]);
+						}
+					}
+
+					// check if there is some values in Size tab
+					// Size
+					if (isValueIn(lomCategories.lomTSize)) {
+						Techincal.addProperty(model.createProperty(model
+								.expandPrefix("lom:size")),
+								lomCategories.lomTSize[0]);
+					}
+
+					// check if there is some values in Location tab
+					// Location
+					if (isValueIn(lomCategories.lomTLocation)) {
+						for (int i = 0; i < lomCategories.lomTLocation.length; i++) {
+							Techincal.addProperty(model.createProperty(model
+									.expandPrefix("lom:location")),
+									lomCategories.lomTLocation[i]);
+						}
+					}
+
+					// check if there is some values in Requirement tab
+					// Requirement
+					if (isValueIn(lomCategories.lomTRequierment)) {
+						for (int i = 0; i < lomCategories.lomTRequierment.length; i++) {
+							Resource Requirement = model.createResource(model
+									.createResource(model
+											.expandPrefix("lom:Requirement")));
+							Techincal.addProperty(model.createProperty(model
+									.expandPrefix("lom:isElementComponentOf")),
+									Requirement);
+
+							for (int j = 0; j < lomCategories.lomTRequierment[i].length; j++) {
+								Resource OrComposite = model
+										.createResource(model
+												.createResource(model
+														.expandPrefix("lom:OrComposite")));
+								Requirement
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:isElementComponentOf")),
+												OrComposite);
+
+								OrComposite.addProperty(model
+										.createProperty(model
+												.expandPrefix("lom:type")),
+										lomCategories.lomTRequierment[i][j][0]);
+								OrComposite.addProperty(model
+										.createProperty(model
+												.expandPrefix("lom:name")),
+										lomCategories.lomTRequierment[i][j][1]);
+								OrComposite
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:minimumVersion")),
+												lomCategories.lomTRequierment[i][j][2]);
+								OrComposite
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:maximumVersion")),
+												lomCategories.lomTRequierment[i][j][3]);
+
+							}
+						}
+					}
+				}
+
 				// start writing the RDF
 				StringWriter out_test = new StringWriter();
 
@@ -341,6 +428,15 @@ public class BuildRDF4LOM {
 				return true;
 			else if (isValueIn(lomCategories.lomMLanguage))
 				return true;
+			// Techincal
+			else if (isValueIn(lomCategories.lomTFormat))
+				return true;
+			else if (isValueIn(lomCategories.lomTSize))
+				return true;
+			else if (isValueIn(lomCategories.lomTLocation))
+				return true;
+			else if (isValueIn(lomCategories.lomTRequierment))
+				return true;
 			else
 				return false;
 		else
@@ -388,6 +484,18 @@ public class BuildRDF4LOM {
 				else
 					return false;
 			}
+			case Technical: {
+				if (isValueIn(lomCategories.lomTFormat))
+					return true;
+				else if (isValueIn(lomCategories.lomTSize))
+					return true;
+				else if (isValueIn(lomCategories.lomTLocation))
+					return true;
+				else if (isValueIn(lomCategories.lomTRequierment))
+					return true;
+				else
+					return false;
+			}
 			default:
 				return false;
 			}
@@ -419,6 +527,25 @@ public class BuildRDF4LOM {
 			for (int j = 0; j < theCategory[i].length; j++) {
 				if (!theCategory[i][j].isEmpty()) {
 					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This is used for all the values from a multidimensional array string
+	 * 
+	 * @param theCategory
+	 * @return true if there is a non empty string into the array
+	 */
+	private Boolean isValueIn(String[][][] theCategory) {
+		for (int i = 0; i < theCategory.length; i++) {
+			for (int j = 0; j < theCategory[i].length; j++) {
+				for (int k = 0; k < theCategory[i][j].length; k++) {
+					if (!theCategory[i][j][k].isEmpty()) {
+						return true;
+					}
 				}
 			}
 		}

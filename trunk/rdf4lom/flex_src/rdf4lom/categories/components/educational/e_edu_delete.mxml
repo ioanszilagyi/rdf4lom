@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		verticalAlign="top" 
+		label="{resourceManager.getString('myResources', 'EDUCATIONAL')} #{parent.getChildIndex(this)+1}"
+		width="100%">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import as3.DynCatArrays;
+			
+			private function removeComponent():void {
+				//DynCatArrays.lomTOrComposite.removeItemAt(DynCatArrays.lomTOrComposite.getItemIndex(this));
+				parent.removeChild(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:Style source="rdf4lom/css/style.css" />
+    
+	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="5.1 {resourceManager.getString('myResources', 'INTERACTIVITYTYPE')}" id="einteractivitytype" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.2 {resourceManager.getString('myResources', 'LEARNINGRESOURCETYPE')}" id="elearningresourcetype" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.3 {resourceManager.getString('myResources', 'INTERACTIVITYLEVEL')}" id="einteractivitylevel" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.4 {resourceManager.getString('myResources', 'SEMANTICDENSITY')}" id="esemanticdensity" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.5 {resourceManager.getString('myResources', 'INTENDEDENDUSERROLE')}" id="eintendeduderrole" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.6 {resourceManager.getString('myResources', 'CONTEXT')}" id="econtext" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.7 {resourceManager.getString('myResources', 'TYPICALAGERANGE')}" id="etypicalagerange" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.8 {resourceManager.getString('myResources', 'DIFFICULTY')}" id="edificulty" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.9 {resourceManager.getString('myResources', 'TYPICALLEARNINGTIME')}" id="etypicallearningtime" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.10 {resourceManager.getString('myResources', 'DESCRIPTION')}" id="edescription" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="5.11 {resourceManager.getString('myResources', 'LANGUAGE')}" id="elanguage" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
+	<mx:VRule height="30"/>
+	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
+</mx:HBox>

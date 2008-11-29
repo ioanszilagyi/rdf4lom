@@ -29,6 +29,15 @@ package as3
 			lomMContribute.removeAll();
 			lomMMetadataSchema.removeAll();
 			lomMLanguage.removeAll();
+			
+			// Technical
+			lomTFormat.removeAll();
+			lomTSize.removeAll();
+			lomTLocation.removeAll();
+			lomTRequirement.removeAll();
+			lomTInstallationRemarks.removeAll();
+			lomTOtherPlatformRequirements.removeAll();
+			lomTDuration.removeAll();
 		}
 		
 		// General
@@ -65,6 +74,22 @@ package as3
 		/// MetadataSchema
 		public static var lomMMetadataSchema:ArrayCollection = new ArrayCollection();
 		/// Language
-		public static var lomMLanguage:ArrayCollection = new ArrayCollection();		
+		public static var lomMLanguage:ArrayCollection = new ArrayCollection();
+		
+		// Technical
+		/// Format
+		public static var lomTFormat:ArrayCollection = new ArrayCollection();
+		/// Size
+		public static var lomTSize:ArrayCollection = new ArrayCollection();
+		/// Location
+		public static var lomTLocation:ArrayCollection = new ArrayCollection();
+		/// Requirement
+		public static var lomTRequirement:ArrayCollection = new ArrayCollection();			
+		/// Installation Remarks
+		public static var lomTInstallationRemarks:ArrayCollection = new ArrayCollection();
+		/// Other Platform Requirements
+		public static var lomTOtherPlatformRequirements:ArrayCollection = new ArrayCollection();
+		/// Duration
+		public static var lomTDuration:ArrayCollection = new ArrayCollection();		
 	}
 }
