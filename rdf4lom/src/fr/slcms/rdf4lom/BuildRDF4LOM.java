@@ -353,6 +353,153 @@ public class BuildRDF4LOM {
 					}
 				}
 
+				// check if there is some values in Educational tab
+				// ///////////// EDUCATIONAL
+				// ////////////////////////
+				if (isValueIn(lomCategories, "Educational")) {
+					for (int i = 0; i < lomCategories.lomEEducational.length; i++) {
+						Resource Educational = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Educational")));
+						LOM.addProperty(model.createProperty(model
+								.expandPrefix("lom:hasElement")), Educational);
+
+						// check if there is some values in Interactivity Type
+						// tab
+						// Interactivity Type
+						if (isValueIn(lomCategories.lomEEducational[i][0])) {
+							Educational.addProperty(model.createProperty(model
+									.expandPrefix("lom:interactivityType")),
+									lomCategories.lomEEducational[i][0][0][0]);
+
+						}
+
+						// check if there is some values in Learning Resource
+						// Type tab
+						// Learning Resource Type
+						if (isValueIn(lomCategories.lomEEducational[i][1])) {
+							for (int j = 0; j < lomCategories.lomEEducational[i][1].length; j++) {
+								Educational
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:learningResourceType")),
+												lomCategories.lomEEducational[i][1][j][0]);
+							}
+						}
+
+						// check if there is some values in Interactivity Level
+						// tab
+						// Interactivity Level
+						if (isValueIn(lomCategories.lomEEducational[i][2])) {
+							Educational.addProperty(model.createProperty(model
+									.expandPrefix("lom:interactivityLevel")),
+									lomCategories.lomEEducational[i][2][0][0]);
+
+						}
+
+						// check if there is some values in Semantic Density tab
+						// Semantic Density
+						if (isValueIn(lomCategories.lomEEducational[i][3])) {
+							Educational.addProperty(model.createProperty(model
+									.expandPrefix("lom:semanticDensity")),
+									lomCategories.lomEEducational[i][3][0][0]);
+
+						}
+
+						// check if there is some values in Intended End User
+						// Role tab
+						// Intended End User Role
+						if (isValueIn(lomCategories.lomEEducational[i][4])) {
+							for (int j = 0; j < lomCategories.lomEEducational[i][4].length; j++) {
+								Educational
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:intendedEndUserRole")),
+												lomCategories.lomEEducational[i][4][j][0]);
+							}
+						}
+
+						// check if there is some values in Context tab
+						// Context
+						if (isValueIn(lomCategories.lomEEducational[i][5])) {
+							for (int j = 0; j < lomCategories.lomEEducational[i][5].length; j++) {
+								Educational
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:context")),
+												lomCategories.lomEEducational[i][5][j][0]);
+							}
+						}
+
+						// check if there is some values in Typical Age Range
+						// tab
+						// Typical Age Range
+						if (isValueIn(lomCategories.lomEEducational[i][6])) {
+							for (int j = 0; j < lomCategories.lomEEducational[i][6].length; j++) {
+								Educational
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:typicalAgeRange")),
+												model
+														.createLiteral(
+																lomCategories.lomEEducational[i][6][j][0],
+																lomCategories.lomEEducational[i][6][j][1]));
+							}
+						}
+						
+						// check if there is some values in Difficulty tab
+						// Difficulty
+						if (isValueIn(lomCategories.lomEEducational[i][7])) {
+							Educational.addProperty(model.createProperty(model
+									.expandPrefix("lom:difficulty")),
+									lomCategories.lomEEducational[i][7][0][0]);
+
+						}
+						
+						// check if there is some values in Typical Learning Time tab
+						// Typical Learning Time
+						if (isValueIn(lomCategories.lomEEducational[i][8])) {
+							Educational.addProperty(model.createProperty(model
+									.expandPrefix("lom:typicalLearningTime")),
+									lomCategories.lomEEducational[i][8][0][0]);
+
+						}
+						
+						// check if there is some values in Description tab
+						// Description
+						if (isValueIn(lomCategories.lomEEducational[i][9])) {
+							for (int j = 0; j < lomCategories.lomEEducational[i][9].length; j++) {
+								Educational
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:description")),
+												model
+														.createLiteral(
+																lomCategories.lomEEducational[i][9][j][0],
+																lomCategories.lomEEducational[i][9][j][1]));
+							}
+						}
+						
+						// check if there is some values in Language tab
+						// Language
+						if (isValueIn(lomCategories.lomEEducational[i][10])) {
+							for (int j = 0; j < lomCategories.lomEEducational[i][10].length; j++) {
+								Educational
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:language")),
+												lomCategories.lomEEducational[i][10][j][0]);
+							}
+						}
+					}
+				}
+
 				// start writing the RDF
 				StringWriter out_test = new StringWriter();
 
@@ -437,6 +584,9 @@ public class BuildRDF4LOM {
 				return true;
 			else if (isValueIn(lomCategories.lomTRequierment))
 				return true;
+			// Educational
+			else if (isValueIn(lomCategories.lomEEducational))
+				return true;
 			else
 				return false;
 		else
@@ -496,6 +646,12 @@ public class BuildRDF4LOM {
 				else
 					return false;
 			}
+			case Educational: {
+				if (isValueIn(lomCategories.lomEEducational))
+					return true;
+				else
+					return false;
+			}
 			default:
 				return false;
 			}
@@ -545,6 +701,27 @@ public class BuildRDF4LOM {
 				for (int k = 0; k < theCategory[i][j].length; k++) {
 					if (!theCategory[i][j][k].isEmpty()) {
 						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This is used for all the values from a multidimensional array string
+	 * 
+	 * @param theCategory
+	 * @return true if there is a non empty string into the array
+	 */
+	private Boolean isValueIn(String[][][][] theCategory) {
+		for (int i = 0; i < theCategory.length; i++) {
+			for (int j = 0; j < theCategory[i].length; j++) {
+				for (int k = 0; k < theCategory[i][j].length; k++) {
+					for (int m = 0; m < theCategory[i][j][k].length; m++) {
+						if (!theCategory[i][j][k][m].isEmpty()) {
+							return true;
+						}
 					}
 				}
 			}

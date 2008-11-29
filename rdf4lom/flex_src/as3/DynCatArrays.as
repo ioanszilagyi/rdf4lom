@@ -38,6 +38,9 @@ package as3
 			lomTInstallationRemarks.removeAll();
 			lomTOtherPlatformRequirements.removeAll();
 			lomTDuration.removeAll();
+			
+			// Edicational
+			lomEEducational.removeAll();
 		}
 		
 		// General
@@ -91,5 +94,9 @@ package as3
 		public static var lomTOtherPlatformRequirements:ArrayCollection = new ArrayCollection();
 		/// Duration
 		public static var lomTDuration:ArrayCollection = new ArrayCollection();		
+		
+		// Educational
+		///
+		public static var lomEEducational:ArrayCollection = new ArrayCollection();
 	}
 }
