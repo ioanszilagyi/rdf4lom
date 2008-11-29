@@ -201,7 +201,18 @@
                		passLomObj.lomEEducational.push(theEduArray);                 
                 }
                 
+                ///////////////////////////////////
+                // Rights
+                /// Cost
+                passLomObj.lomRCost.push(DynCatArrays.lomRCost[0].cost.text);
+               	/// Copyright And Other Restriction
+                passLomObj.lomRCopyrightAndOtherRestriction.push(DynCatArrays.lomRCopyrightAndOtherRestrictions[0].copyrightandotherrestriction.text);
+                /// Description
+               	for (i=0; i<DynCatArrays.lomRDescription.length; i++) {
+                 	passLomObj.lomRDescription.push(new Array(DynCatArrays.lomRDescription[i].description.text, DynCatArrays.lomRDescription[i].lang.text));
+                }
                 
+                                
                 //////////////////////////////////////////////
             	// the example of the object sended to java //
             	//////////////////////////////////////////////   

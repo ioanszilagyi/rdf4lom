@@ -35,6 +35,11 @@ package as3
 		public var lomTDuration:Array = new Array();
 		
 		// Educational
-		public var lomEEducational = new Array();	
+		public var lomEEducational:Array = new Array();
+		
+		// Rights
+		public var lomRCost:Array = new Array();
+		public var lomRCopyrightAndOtherRestriction:Array = new Array();
+		public var lomRDescription:Array = new Array();
 	}
 }

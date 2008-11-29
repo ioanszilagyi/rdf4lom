@@ -19,6 +19,7 @@
 			import rdf4lom.categories.components.metametadata.*;
 			import rdf4lom.categories.components.technical.*;
 			import rdf4lom.categories.components.educational.e_edu_delete;
+			import rdf4lom.categories.components.rights.*;
 						
 			private function inEN():void {
 				resourceManager.localeChain = [ "en_US" ];		
@@ -62,6 +63,10 @@
 				DynCatArrays.lomTDuration.addItem(new t_dur_add());
 				// Educational
 				DynCatArrays.lomEEducational.addItem(new e_edu_delete());
+				// Rights
+				DynCatArrays.lomRCost.addItem(new r_cos_add());
+				DynCatArrays.lomRCopyrightAndOtherRestrictions.addItem(new r_cop_add());
+				DynCatArrays.lomRDescription.addItem(new r_des_add());
 				
 				// Create New LOM
 				// General category
@@ -92,6 +97,10 @@
 				LOMForm.ctechnical.tduration.addChild(DynCatArrays.lomTDuration.getItemAt(0) as DisplayObject);
 				// Educational
 				LOMForm.ceducational.vseducational.addChild(DynCatArrays.lomEEducational.getItemAt(0) as DisplayObject);
+				// Rights
+				LOMForm.crights.rcost.addChild(DynCatArrays.lomRCost.getItemAt(0) as DisplayObject);
+				LOMForm.crights.rcopyrightandotherrestrictions.addChild(DynCatArrays.lomRCopyrightAndOtherRestrictions.getItemAt(0) as DisplayObject);
+				LOMForm.crights.rdescription.addChild(DynCatArrays.lomRDescription.getItemAt(0) as DisplayObject);				
 			}
 			
 			private function removeAllChildrenFromLOM():void {
@@ -128,6 +137,10 @@
 				// Educational
 				LOMForm.ceducational.vseducational.removeAllChildren();
 				
+				// Rights
+				LOMForm.crights.rcost.removeAllChildren();
+				LOMForm.crights.rcopyrightandotherrestrictions.removeAllChildren();
+				LOMForm.crights.rdescription.removeAllChildren();
 			}
 		]]>
 	</mx:Script>
