@@ -45,4 +45,7 @@ public class LomCategories {
 	public String[] lomRCost;
 	public String[] lomRCopyrightAndOtherRestriction;
 	public String[][] lomRDescription;
+	
+	// Relation
+	public String[][][][][] lomRRelation;
 }

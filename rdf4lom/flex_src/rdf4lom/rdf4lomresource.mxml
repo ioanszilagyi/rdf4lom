@@ -8,7 +8,8 @@
 	<mx:Script>      
         <![CDATA[
         	import rdf4lom.categories.components.educational.*;
-        	import rdf4lom.categories.components.technical.*;        	
+        	import rdf4lom.categories.components.technical.*;  
+        	import rdf4lom.categories.components.relation.*;      	
         	import as3.LomCategories;
         	import as3.DynCatArrays;
         
@@ -119,88 +120,87 @@
                	for (i=0; i<DynCatArrays.lomEEducational.length; i++) {
                		var theEduArray:Array = new Array();
                		// Interactivity Type
-               		theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).einteractivitytype.getChildAt(0) as e_int_add).interactivitytype.text)));
+               		theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu).einteractivitytype.getChildAt(0) as e_int_add).interactivitytype.text)));
 					// Learning Resource Type
 					var theLeaResTyp:Array = new Array();					
-               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu_delete).elearningresourcetype.getChildren().length; j++) {
+               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu).elearningresourcetype.getChildren().length; j++) {
                			if (j == 0) {                			
-               				theLeaResTyp.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).elearningresourcetype.getChildAt(j) as e_lea_add).learningresourcetype.text));
+               				theLeaResTyp.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).elearningresourcetype.getChildAt(j) as e_lea_add).learningresourcetype.text));
                			} else {
-               				theLeaResTyp.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).elearningresourcetype.getChildAt(j) as e_lea_delete).learningresourcetype.text));
+               				theLeaResTyp.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).elearningresourcetype.getChildAt(j) as e_lea_delete).learningresourcetype.text));
                			}
                		}
                		theEduArray.push(theLeaResTyp);
                		// Interactivity Level
-					theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).einteractivitylevel.getChildAt(0) as e_int_lev_add).interactivitylevel.text)));               		
+					theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu).einteractivitylevel.getChildAt(0) as e_int_lev_add).interactivitylevel.text)));               		
                		// Semantic Density
-					theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).esemanticdensity.getChildAt(0) as e_sem_add).semanticdensity.text)));
+					theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu).esemanticdensity.getChildAt(0) as e_sem_add).semanticdensity.text)));
 					// Intended End User Role
 					var theIntEndUsr:Array = new Array();		
-               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu_delete).eintendedendusererrole.getChildren().length; j++) {
+               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu).eintendedendusererrole.getChildren().length; j++) {
                			if (j == 0) {                			
-               				theIntEndUsr.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).eintendedendusererrole.getChildAt(j) as e_int_end_add).intendedendusererrole.text));
+               				theIntEndUsr.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).eintendedendusererrole.getChildAt(j) as e_int_end_add).intendedendusererrole.text));
                			} else {
-               				theIntEndUsr.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).eintendedendusererrole.getChildAt(j) as e_int_end_delete).intendedendusererrole.text));
+               				theIntEndUsr.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).eintendedendusererrole.getChildAt(j) as e_int_end_delete).intendedendusererrole.text));
                			}
                		}
                		theEduArray.push(theIntEndUsr);
 					// Context
 					var theContext:Array = new Array();		
-               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu_delete).econtext.getChildren().length; j++) {
+               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu).econtext.getChildren().length; j++) {
                			if (j == 0) {                			
-               				theContext.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).econtext.getChildAt(j) as e_con_add).context.text));
+               				theContext.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).econtext.getChildAt(j) as e_con_add).context.text));
                			} else {
-               				theContext.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).econtext.getChildAt(j) as e_con_delete).context.text));
+               				theContext.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).econtext.getChildAt(j) as e_con_delete).context.text));
                			}
                		}
                		theEduArray.push(theContext);               		
                		// Typical Age Range
                		var theTypAgeRan:Array = new Array();		
-               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu_delete).etypicalagerange.getChildren().length; j++) {
+               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu).etypicalagerange.getChildren().length; j++) {
                			if (j == 0) {                			
                				theTypAgeRan.push(new Array(
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).etypicalagerange.getChildAt(j) as e_typ_add).typicalagerange.text,
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).etypicalagerange.getChildAt(j) as e_typ_add).lang.text));
+               					((DynCatArrays.lomEEducational[i] as e_edu).etypicalagerange.getChildAt(j) as e_typ_add).typicalagerange.text,
+               					((DynCatArrays.lomEEducational[i] as e_edu).etypicalagerange.getChildAt(j) as e_typ_add).lang.text));
                			} else {
                				theTypAgeRan.push(new Array(
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).etypicalagerange.getChildAt(j) as e_typ_delete).typicalagerange.text,
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).etypicalagerange.getChildAt(j) as e_typ_delete).lang.text));
+               					((DynCatArrays.lomEEducational[i] as e_edu).etypicalagerange.getChildAt(j) as e_typ_delete).typicalagerange.text,
+               					((DynCatArrays.lomEEducational[i] as e_edu).etypicalagerange.getChildAt(j) as e_typ_delete).lang.text));
                			}
                		}
                		theEduArray.push(theTypAgeRan); 
                		// Difficulty
-               		theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).edificulty.getChildAt(0) as e_dif_add).difficulty.text)));
+               		theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu).edificulty.getChildAt(0) as e_dif_add).difficulty.text)));
                		// Typical Learning Time
-               		theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).etypicallearningtime.getChildAt(0) as e_typ_lea_add).typicallearningtime.text)));
+               		theEduArray.push(new Array(new Array(((DynCatArrays.lomEEducational[i] as e_edu).etypicallearningtime.getChildAt(0) as e_typ_lea_add).typicallearningtime.text)));
                		// Description
                		var theDescription:Array = new Array();		
-               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu_delete).edescription.getChildren().length; j++) {
+               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu).edescription.getChildren().length; j++) {
                			if (j == 0) {                			
                				theDescription.push(new Array(
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).edescription.getChildAt(j) as e_des_add).description.text,
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).edescription.getChildAt(j) as e_des_add).lang.text));
+               					((DynCatArrays.lomEEducational[i] as e_edu).edescription.getChildAt(j) as e_des_add).description.text,
+               					((DynCatArrays.lomEEducational[i] as e_edu).edescription.getChildAt(j) as e_des_add).lang.text));
                			} else {
                				theDescription.push(new Array(
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).edescription.getChildAt(j) as e_des_delete).description.text,
-               					((DynCatArrays.lomEEducational[i] as e_edu_delete).edescription.getChildAt(j) as e_des_delete).lang.text));
+               					((DynCatArrays.lomEEducational[i] as e_edu).edescription.getChildAt(j) as e_des_delete).description.text,
+               					((DynCatArrays.lomEEducational[i] as e_edu).edescription.getChildAt(j) as e_des_delete).lang.text));
                			}
                		}
                		theEduArray.push(theDescription); 
 					// Language
 					var theLanguage:Array = new Array();					
-               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu_delete).elanguage.getChildren().length; j++) {
+               		for (j=0; j<(DynCatArrays.lomEEducational[i] as e_edu).elanguage.getChildren().length; j++) {
                			if (j == 0) {                			
-               				theLanguage.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).elanguage.getChildAt(j) as e_lan_add).lang.text));
+               				theLanguage.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).elanguage.getChildAt(j) as e_lan_add).lang.text));
                			} else {
-               				theLanguage.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu_delete).elanguage.getChildAt(j) as e_lan_delete).lang.text));
+               				theLanguage.push(new Array(((DynCatArrays.lomEEducational[i] as e_edu).elanguage.getChildAt(j) as e_lan_delete).lang.text));
                			}
                		}
                		theEduArray.push(theLanguage);
                		
                		// add to edducational
                		passLomObj.lomEEducational.push(theEduArray);                 
-                }
-                
+                }           
                 ///////////////////////////////////
                 // Rights
                 /// Cost
@@ -211,7 +211,57 @@
                	for (i=0; i<DynCatArrays.lomRDescription.length; i++) {
                  	passLomObj.lomRDescription.push(new Array(DynCatArrays.lomRDescription[i].description.text, DynCatArrays.lomRDescription[i].lang.text));
                 }
-                
+                ///////////////////////////////////
+                // Relation
+                /// Relation                 
+               	for (i=0; i<DynCatArrays.lomRRelation.length; i++) {
+               		var theRelArray:Array = new Array();
+               		// Kind
+               		theRelArray.push(new Array(new Array(new Array(((DynCatArrays.lomRRelation[i] as r_rel).rkind.getChildAt(0) as r_kin_add).kind.text))));
+               		// Resources
+               		var theResource:Array = new Array();               		
+               		/// Identifier
+               		var theIdentifier:Array = new Array();
+               		for (j=0; j<((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).ridentifier.getChildren().length; j++) {
+               			if (j == 0) {
+         					theIdentifier.push(
+         					new Array(
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).ridentifier.getChildAt(j) as r_ide_add).catalog.text,
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).ridentifier.getChildAt(j) as r_ide_add).entry.text
+         							));
+               			} else {
+         					theIdentifier.push(
+         					new Array(
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).ridentifier.getChildAt(j) as r_ide_delete).catalog.text,
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).ridentifier.getChildAt(j) as r_ide_delete).entry.text
+         							));
+               			} 
+               		}
+               		theResource.push(theIdentifier);
+               		/// Description
+               		theDescription = new Array();
+               		for (j=0; j<((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).rdescription.getChildren().length; j++) {
+               			 if (j == 0) {
+         					theDescription.push(
+         					new Array(
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).rdescription.getChildAt(j) as r_des_add).description.text,
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).rdescription.getChildAt(j) as r_des_add).lang.text
+         							));
+               			} else {
+         					theDescription.push(
+         					new Array(
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).rdescription.getChildAt(j) as r_des_delete).description.text,
+         								(((DynCatArrays.lomRRelation[i] as r_rel).rresource.getChildAt(0) as r_res).rdescription.getChildAt(j) as r_des_delete).lang.text
+         							));
+               			} 
+               		}
+               		
+               		theResource.push(theDescription);               		
+               		theRelArray.push(theResource);
+               		 
+               		// add to relation
+               		passLomObj.lomRRelation.push(theRelArray); 
+               	}
                                 
                 //////////////////////////////////////////////
             	// the example of the object sended to java //
