@@ -2,10 +2,10 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'EDUCATIONAL')}">
 	<mx:Script>
 		<![CDATA[
-			import rdf4lom.categories.components.educational.e_edu_delete;			
+			import rdf4lom.categories.components.educational.e_edu;			
 			import as3.DynCatArrays;
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new e_edu_delete();
+				var theDisObj:DisplayObject = new e_edu();
 				DynCatArrays.lomEEducational.addItem(theDisObj);
 				vseducational.addChild(theDisObj);
 			}
@@ -19,15 +19,4 @@
 		</mx:HBox>
 		<mx:ViewStack id="vseducational" height="100%" width="100%" creationPolicy="all" />
 	</mx:VBox>
-			
-<!--	<mx:HBox width="100%" height="100%">
-		<mx:HBox borderStyle="solid" borderColor="#000000">		
-			<mx:VBox verticalAlign="middle" horizontalAlign="left">				
-				<mx:TabBar dataProvider="vseducational" direction="vertical" />		
-			</mx:VBox>	
-			<mx:VRule height="20" />	
-			<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>
-		</mx:HBox>
-		<mx:ViewStack id="vseducational" height="100%" width="100%" creationPolicy="all" />
-	</mx:HBox>	-->	
 </mx:Canvas>

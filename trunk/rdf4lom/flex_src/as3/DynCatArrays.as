@@ -47,6 +47,8 @@ package as3
 			lomRCopyrightAndOtherRestrictions.removeAll();
 			lomRDescription.removeAll();
 			
+			// Relation
+			lomRRelation.removeAll();
 		}
 		
 		// General
@@ -111,5 +113,8 @@ package as3
 		public static var lomRCopyrightAndOtherRestrictions:ArrayCollection = new ArrayCollection();
 		/// Descriotion
 		public static var lomRDescription:ArrayCollection = new ArrayCollection();
+
+		// Relation
+		public static var lomRRelation:ArrayCollection = new ArrayCollection();
 	}
 }

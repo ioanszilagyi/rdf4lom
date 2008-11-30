@@ -547,6 +547,82 @@ public class BuildRDF4LOM {
 					}
 				}
 
+				// check if there is some values in Relation tab
+				// ///////////// RELATION
+				// ////////////////////////
+				if (isValueIn(lomCategories, "Relation")) {
+					for (int i = 0; i < lomCategories.lomRRelation.length; i++) {
+						Resource Relation = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Relation")));
+						LOM.addProperty(model.createProperty(model
+								.expandPrefix("lom:hasElement")), Relation);
+
+						// check if there is some values in Kind tab
+						// Kind
+						if (isValueIn(lomCategories.lomRRelation[i][0])) {
+							Relation.addProperty(model.createProperty(model
+									.expandPrefix("lom:kind")),
+									lomCategories.lomRRelation[i][0][0][0][0]);
+						}
+
+						// check if there is some values in Resource tab
+						// Resource
+						if (isValueIn(lomCategories.lomRRelation[i][1])) {
+							Resource CResource = model.createResource(model
+									.createResource(model
+											.expandPrefix("lom:Resource")));
+							Relation.addProperty(model.createProperty(model
+									.expandPrefix("lom:isElementComponentOf")),
+									CResource);
+
+							// Identifier
+							if (isValueIn(lomCategories.lomRRelation[i][1][0])) {
+								for (int j = 0; j < lomCategories.lomRRelation[i][1][0].length; j++) {
+									Resource Identifier = model
+											.createResource(model
+													.createResource(model
+															.expandPrefix("lom:Identifier")));
+									CResource
+											.addProperty(
+													model
+															.createProperty(model
+																	.expandPrefix("lom:isElementComponentOf")),
+													Identifier);
+
+									Identifier
+											.addProperty(
+													model
+															.createProperty(model
+																	.expandPrefix("lom:catalog")),
+													lomCategories.lomRRelation[i][1][0][j][0]);
+									Identifier
+											.addProperty(
+													model
+															.createProperty(model
+																	.expandPrefix("lom:entry")),
+													lomCategories.lomRRelation[i][1][0][j][1]);
+								}
+							}
+
+							// Description
+							if (isValueIn(lomCategories.lomRRelation[i][1][1])) {
+								for (int j = 0; j < lomCategories.lomRRelation[i][1][1].length; j++) {
+									CResource
+											.addProperty(
+													model
+															.createProperty(model
+																	.expandPrefix("lom:description")),
+													model
+															.createLiteral(
+																	lomCategories.lomRRelation[i][1][1][j][0],
+																	lomCategories.lomRRelation[i][1][1][j][1]));
+								}
+							}
+						}
+					}
+				}
+
 				// start writing the RDF
 				StringWriter out_test = new StringWriter();
 
@@ -641,8 +717,12 @@ public class BuildRDF4LOM {
 				return true;
 			else if (isValueIn(lomCategories.lomRDescription))
 				return true;
+			// Relation
+			else if (isValueIn(lomCategories.lomRRelation))
+				return true;
 			else
 				return false;
+
 		else
 			switch (Categories.valueOf(category)) {
 			// check the General category
@@ -716,6 +796,12 @@ public class BuildRDF4LOM {
 				else
 					return false;
 			}
+			case Relation: {
+				if (isValueIn(lomCategories.lomRRelation))
+					return true;
+				else
+					return false;
+			}
 			default:
 				return false;
 			}
@@ -785,6 +871,29 @@ public class BuildRDF4LOM {
 					for (int m = 0; m < theCategory[i][j][k].length; m++) {
 						if (!theCategory[i][j][k][m].isEmpty()) {
 							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This is used for all the values from a multidimensional array string
+	 * 
+	 * @param theCategory
+	 * @return true if there is a non empty string into the array
+	 */
+	private Boolean isValueIn(String[][][][][] theCategory) {
+		for (int i = 0; i < theCategory.length; i++) {
+			for (int j = 0; j < theCategory[i].length; j++) {
+				for (int k = 0; k < theCategory[i][j].length; k++) {
+					for (int m = 0; m < theCategory[i][j][k].length; m++) {
+						for (int n = 0; n < theCategory[i][j][k][m].length; n++) {
+							if (!theCategory[i][j][k][m][n].isEmpty()) {
+								return true;
+							}
 						}
 					}
 				}

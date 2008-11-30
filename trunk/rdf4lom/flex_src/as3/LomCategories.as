@@ -41,5 +41,8 @@ package as3
 		public var lomRCost:Array = new Array();
 		public var lomRCopyrightAndOtherRestriction:Array = new Array();
 		public var lomRDescription:Array = new Array();
+		
+		// Relation 
+		public var lomRRelation:Array = new Array();
 	}
 }
