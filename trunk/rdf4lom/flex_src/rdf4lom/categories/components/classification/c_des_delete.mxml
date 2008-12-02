@@ -2,7 +2,7 @@
 <mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top">
 
 	<mx:Script>
-		<![CDATA[			
+		<![CDATA[
 			private function removeComponent():void {
 				parent.removeChild(this);
 			}			

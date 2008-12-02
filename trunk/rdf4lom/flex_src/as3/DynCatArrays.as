@@ -49,6 +49,12 @@ package as3
 			
 			// Relation
 			lomRRelation.removeAll();
+			
+			// Annotation
+			lomAAnnotation.removeAll();
+			
+			// Classification
+			lomCClassification.removeAll();		
 		}
 		
 		// General
@@ -116,5 +122,11 @@ package as3
 
 		// Relation
 		public static var lomRRelation:ArrayCollection = new ArrayCollection();
+		
+		// Annotation
+		public static var lomAAnnotation:ArrayCollection = new ArrayCollection();
+		
+		// Classification
+		public static var lomCClassification:ArrayCollection = new ArrayCollection();
 	}
 }

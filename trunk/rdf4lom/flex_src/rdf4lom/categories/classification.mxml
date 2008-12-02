@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Classification">
-					
-	<mx:Style source="rdf4lom/css/style.css" />
-    
-	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
-		<mx:VBox label="9.1 Identifiant">
-			
-		</mx:VBox>
-		<mx:VBox label="9.2 Contribution">
-					
-		</mx:VBox>
-		<mx:VBox label="9.3 Schema de metadones">
-					
-		</mx:VBox>
-		<mx:VBox label="9.3 Schema de metadones">
-					
-		</mx:VBox>		
-	</mx:Accordion>	
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'CLASSIFICATION')}">
+	<mx:Script>
+		<![CDATA[
+			import rdf4lom.categories.components.classification.c_cla;
+			import as3.DynCatArrays;
+			private function addComponent():void {
+				var theDisObj:DisplayObject = new c_cla();
+				DynCatArrays.lomCClassification.addItem(theDisObj);
+				vsclassification.addChild(theDisObj);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%">				
+		<mx:HBox>
+			<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>
+			<mx:TabBar dataProvider="vsclassification" direction="horizontal" />							
+		</mx:HBox>
+		<mx:ViewStack id="vsclassification" height="100%" width="100%" creationPolicy="all" />
+	</mx:VBox>
 </mx:Canvas>
