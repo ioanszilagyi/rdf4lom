@@ -901,4 +901,31 @@ public class BuildRDF4LOM {
 		}
 		return false;
 	}
+
+	/**
+	 * This is used for all the values from a multidimensional array string
+	 * 
+	 * @param theCategory
+	 * @return true if there is a non empty string into the array
+	 */
+	private Boolean isValueIn(String[][][][][][][] theCategory) {
+		for (int i = 0; i < theCategory.length; i++) {
+			for (int j = 0; j < theCategory[i].length; j++) {
+				for (int k = 0; k < theCategory[i][j].length; k++) {
+					for (int m = 0; m < theCategory[i][j][k].length; m++) {
+						for (int n = 0; n < theCategory[i][j][k][m].length; n++) {
+							for (int o = 0; o < theCategory[i][j][k][m][n].length; o++) {
+								for (int p = 0; p < theCategory[i][j][k][m][n][o].length; n++) {
+									if (!theCategory[i][j][k][m][n][o][p].isEmpty()) {
+										return true;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

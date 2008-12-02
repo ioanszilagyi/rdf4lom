@@ -4,13 +4,13 @@
 	<mx:Script>
 		<![CDATA[
 			private function addComponent():void {
-				parent.addChild(new e_des_delete());
+				parent.addChild(new c_sou_delete());
 			}
 		]]>
 	</mx:Script>
-	<mx:TextArea height="80" id="description"/>
-	<mx:VRule height="80"/>
-	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
+	<mx:TextInput id="description"/>
 	<mx:VRule height="15"/>
+	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
+	<mx:VRule height="15"/>	
 	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
 </mx:HBox>

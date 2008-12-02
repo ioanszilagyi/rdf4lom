@@ -2,6 +2,7 @@ package as3
 {
 	[Bindable]
 	[RemoteClass(alias="fr.slcms.rdf4lom.LomCategories")]
+	
 	public class LomCategories
 	{
 		// General
@@ -42,7 +43,13 @@ package as3
 		public var lomRCopyrightAndOtherRestriction:Array = new Array();
 		public var lomRDescription:Array = new Array();
 		
-		// Relation 
+		// Relation
 		public var lomRRelation:Array = new Array();
+		
+		// Annotation 
+		public var lomAAnotation:Array = new Array();
+		
+		// Classification
+		public var lomCClassification:Array = new Array();
 	}
 }

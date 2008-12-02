@@ -21,6 +21,8 @@
 			import rdf4lom.categories.components.technical.*;
 			import rdf4lom.categories.components.educational.e_edu;
 			import rdf4lom.categories.components.rights.*;
+			import rdf4lom.categories.components.annotation.*;
+			import rdf4lom.categories.components.classification.*;
 						
 			private function inEN():void {
 				resourceManager.localeChain = [ "en_US" ];		
@@ -70,6 +72,10 @@
 				DynCatArrays.lomRDescription.addItem(new r_des_add());
 				// Relation
 				DynCatArrays.lomRRelation.addItem(new r_rel());
+				// Annotation
+				DynCatArrays.lomAAnnotation.addItem(new a_ann());
+				// Classification
+				DynCatArrays.lomCClassification.addItem(new c_cla());
 				
 				// Create New LOM
 				// General category
@@ -105,7 +111,11 @@
 				LOMForm.crights.rcopyrightandotherrestrictions.addChild(DynCatArrays.lomRCopyrightAndOtherRestrictions.getItemAt(0) as DisplayObject);
 				LOMForm.crights.rdescription.addChild(DynCatArrays.lomRDescription.getItemAt(0) as DisplayObject);
 				// Relation
-				LOMForm.crelation.vsrelational.addChild(DynCatArrays.lomRRelation.getItemAt(0) as DisplayObject);								
+				LOMForm.crelation.vsrelational.addChild(DynCatArrays.lomRRelation.getItemAt(0) as DisplayObject);
+				// Annotation
+				LOMForm.cannotation.vsannotation.addChild(DynCatArrays.lomAAnnotation.getItemAt(0) as DisplayObject);
+				// Classification
+				LOMForm.cclassification.vsclassification.addChild(DynCatArrays.lomCClassification.getItemAt(0) as DisplayObject);
 			}
 			
 			private function removeAllChildrenFromLOM():void {
@@ -146,6 +156,15 @@
 				LOMForm.crights.rcost.removeAllChildren();
 				LOMForm.crights.rcopyrightandotherrestrictions.removeAllChildren();
 				LOMForm.crights.rdescription.removeAllChildren();
+				
+				// Relation
+				LOMForm.crelation.vsrelational.removeAllChildren();
+				
+				// Annotation
+				LOMForm.cannotation.vsannotation.removeAllChildren();
+				
+				// Classification
+				LOMForm.cclassification.vsclassification.removeAllChildren();					
 			}
 		]]>
 	</mx:Script>

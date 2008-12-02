@@ -9,7 +9,9 @@
         <![CDATA[
         	import rdf4lom.categories.components.educational.*;
         	import rdf4lom.categories.components.technical.*;  
-        	import rdf4lom.categories.components.relation.*;      	
+        	import rdf4lom.categories.components.relation.*; 
+        	import rdf4lom.categories.components.annotation.*;  
+        	import rdf4lom.categories.components.classification.*;      	
         	import as3.LomCategories;
         	import as3.DynCatArrays;
         
@@ -19,7 +21,7 @@
             
             public function handleFault(event:FaultEvent):void {
                 // Handle fault.
-                Alert.show(event.fault.faultString, "Fault");               
+                Alert.show(event.fault.faultString+" --- "+event.fault.rootCause.toString()+" --- "+event.fault.faultCode+" --- "+event.fault.getStackTrace()+" --- "+event.fault.message.toString()+" --- "+event.fault.faultDetail+" --- "+event.fault.errorID, "Fault");               
             }
            
             public function buildRDF4LOM():void
@@ -262,6 +264,77 @@
                		// add to relation
                		passLomObj.lomRRelation.push(theRelArray); 
                	}
+               	
+               	///////////////////////////////////
+                // Annotation
+                /// Annotation                 
+               	for (i=0; i<DynCatArrays.lomAAnnotation.length; i++) {
+               		var theAnnArray:Array = new Array();
+               		// Entity (Link to your vCard)
+               		theAnnArray.push(new Array(new Array(((DynCatArrays.lomAAnnotation[i] as a_ann).aentity.getChildAt(0) as a_ent_add).entity.text)));
+               		// Date
+               		theAnnArray.push(new Array(new Array(((DynCatArrays.lomAAnnotation[i] as a_ann).adate.getChildAt(0) as a_dat_add).date.text)));
+               		// Description
+               		theDescription = new Array();		
+               		for (j=0; j<(DynCatArrays.lomAAnnotation[i] as a_ann).adescription.getChildren().length; j++) {
+               			if (j == 0) {                			
+               				theDescription.push(new Array(
+               					((DynCatArrays.lomAAnnotation[i] as a_ann).adescription.getChildAt(j) as a_des_add).description.text,
+               					((DynCatArrays.lomAAnnotation[i] as a_ann).adescription.getChildAt(j) as a_des_add).lang.text));
+               			} else {
+               				theDescription.push(new Array(
+               					((DynCatArrays.lomAAnnotation[i] as a_ann).adescription.getChildAt(j) as a_des_delete).description.text,
+               					((DynCatArrays.lomAAnnotation[i] as a_ann).adescription.getChildAt(j) as a_des_delete).lang.text));
+               			}
+               		}
+               		theAnnArray.push(theDescription); 
+               		
+               		// add to annotation
+               		passLomObj.lomAAnotation.push(theAnnArray);
+               	}
+               	
+               	///////////////////////////////////
+                // Classification
+                /// Classification                 
+               	for (i=0; i<DynCatArrays.lomCClassification.length; i++) {
+               		var theClaArray:Array = new Array();
+               		// Prupose
+               		theClaArray.push(new Array(new Array(((DynCatArrays.lomCClassification[i] as c_cla).cprupose.getChildAt(0) as c_pru_add).date.text)));
+               		// Taxon Path 
+               		
+               		// Description
+               		theDescription = new Array();		
+               		for (j=0; j<(DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildren().length; j++) {
+               			if (j == 0) {                			
+               				theDescription.push(new Array(
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).description.text,
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).lang.text));
+               			} else {
+               				theDescription.push(new Array(
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).description.text,
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).lang.text));
+               			}
+               		}
+               		theClaArray.push(theDescription);    		
+               		// Keyword
+               		var theKeyword:Array = new Array();		
+               		for (j=0; j<(DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildren().length; j++) {
+               			if (j == 0) {                			
+               				theKeyword.push(new Array(
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).description.text,
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).lang.text));
+               			} else {
+               				theKeyword.push(new Array(
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).description.text,
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).lang.text));
+               			}
+               		}
+               		theClaArray.push(theKeyword); 
+               		
+               		// add to annotation
+               		passLomObj.lomCClassification.push(theClaArray);
+               	}
+               	
                                 
                 //////////////////////////////////////////////
             	// the example of the object sended to java //

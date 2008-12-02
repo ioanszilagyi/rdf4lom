@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Relation">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'RELATION')}">
 	<mx:Script>
 		<![CDATA[
 			import rdf4lom.categories.components.relation.r_rel;			
 			import as3.DynCatArrays;
 			private function addComponent():void {
-				var theDisObj:DisplayObject = new r_rel();
-				DynCatArrays.lomRRelation.addItem(theDisObj);
+				var theDisObj:DisplayObject = new r_rel();				
 				vsrelational.addChild(theDisObj);
 			}
 		]]>

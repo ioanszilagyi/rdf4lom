@@ -3,8 +3,11 @@
 
 	<mx:Script>
 		<![CDATA[
+			import as3.DynCatArrays;
 			private function addComponent():void {
-				parent.addChild(new e_des_delete());
+				var theDisObj:DisplayObject = new c_des_delete();
+				//DynCatArrays.lomGDescription.addItem(theDisObj);
+				parent.addChild(theDisObj);
 			}
 		]]>
 	</mx:Script>

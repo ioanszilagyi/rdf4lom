@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		verticalAlign="top" 
+		label="{resourceManager.getString('myResources', 'ANNOTATION')} #{parent.getChildIndex(this)+1}"
+		width="100%"
+		creationComplete="addComponent()">
+	<mx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+			import mx.collections.ArrayCollection;
+			import as3.DynCatArrays;
+			
+			private function addComponent():void {
+				aentity.addChild(new a_ent_add());
+				adate.addChild(new a_dat_add());
+				adescription.addChild(new a_des_add());
+			}
+			
+			private function removeComponent():void {
+				DynCatArrays.lomAAnnotation.removeItemAt(DynCatArrays.lomAAnnotation.getItemIndex(this));
+				parent.removeChild(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:Style source="rdf4lom/css/style.css" />
+        
+	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
+	<mx:VRule height="30"/>
+	<mx:Accordion id="annotation" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="8.1 {resourceManager.getString('myResources', 'ENTITY')}" id="aentity" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="8.2 {resourceManager.getString('myResources', 'DATE')}" id="adate" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="8.3 {resourceManager.getString('myResources', 'DESCRIPTION')}" id="adescription" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
+</mx:HBox>
