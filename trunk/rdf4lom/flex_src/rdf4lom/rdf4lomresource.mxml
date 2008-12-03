@@ -30,6 +30,7 @@
             	var passLomObj:LomCategories = new LomCategories();
             	var i:int;
             	var j:int;
+            	var k:int;
 
                 // Get all the text from all the LOM categories
                 //
@@ -297,41 +298,152 @@
                 // Classification
                 /// Classification                 
                	for (i=0; i<DynCatArrays.lomCClassification.length; i++) {
-               		var theClaArray:Array = new Array();
+               		var theClaArray:Array = new Array(); // level 2
                		// Prupose
-               		theClaArray.push(new Array(new Array(((DynCatArrays.lomCClassification[i] as c_cla).cprupose.getChildAt(0) as c_pru_add).date.text)));
-               		// Taxon Path 
-               		
+               		theClaArray.push(
+               			new Array( // level 3
+               				new Array( // level 4
+               					new Array ( // level 5
+		               				new Array( // level 6
+        		       					new Array ( // level 7				 	
+               		((DynCatArrays.lomCClassification[i] as c_cla).cprupose.getChildAt(0) as c_pru_add).date.text))))));
+               		// Taxon Path                		
+               		var theTaxonPath:Array = new Array(); // level 3             		
+           			/// Source
+           			var theSource:Array = new Array(); // level 4
+           		    for (j=0; j<((DynCatArrays.lomCClassification[i] as c_cla).ctaxonpath.getChildAt(0) as c_taxpath).csource.getChildren().length; j++) {
+               			if (j == 0) {                			
+               				theSource.push(
+               					new Array( // level 5
+               						new Array( // level 6
+        		       					new Array ( // level 7	
+               					(((DynCatArrays.lomCClassification[i] as c_cla).ctaxonpath.getChildAt(0) as c_taxpath).csource.getChildAt(j) as c_sou_add).source.text,
+               					(((DynCatArrays.lomCClassification[i] as c_cla).ctaxonpath.getChildAt(0) as c_taxpath).csource.getChildAt(j) as c_sou_add).lang.text))));
+               			} else {
+               				theSource.push(
+               					new Array( // level 5
+               				    	new Array( // level 6
+        		       					new Array ( // level 7	
+               					(((DynCatArrays.lomCClassification[i] as c_cla).ctaxonpath.getChildAt(0) as c_taxpath).csource.getChildAt(j) as c_sou_delete).source.text,
+               					(((DynCatArrays.lomCClassification[i] as c_cla).ctaxonpath.getChildAt(0) as c_taxpath).csource.getChildAt(j) as c_sou_delete).lang.text))));
+               			}
+               		}           	
+           			theTaxonPath.push(theSource);
+           			
+           			/// Taxon     
+           			var theTaxonFull:Array = new Array(); // level 4
+               		for (j=0; j<
+               			(((DynCatArrays.lomCClassification[i] as c_cla). 
+               				ctaxonpath.getChildAt(0) as c_taxpath). 
+               				ctaxon.getChildAt(0) as c_tax). 
+               				vstaxon.getChildren().length; j++) {
+               						
+           				var theTaxon:Array = new Array(); // level 5	         
+               			// Id
+               			theTaxon.push(
+               			   	new Array( // level 6
+        		       			new Array ( // level 7		
+               				((((((DynCatArrays.lomCClassification[i] as c_cla).
+               				ctaxonpath.getChildAt(0) as c_taxpath).
+               				ctaxon.getChildAt(0) as c_tax). 
+               				vstaxon.getChildAt(j) as c_tax_add).
+               				ctaxon.getChildAt(0) as c_tax_identry).
+               				cid.getChildAt(0) as c_id_add).cid.text)));
+               					             		               			
+               			// Entry       
+               			var theEntry:Array = new Array(); // level 6        			
+               			for (k=0; k<
+               				(((((DynCatArrays.lomCClassification[i] as c_cla). 
+               				ctaxonpath.getChildAt(0) as c_taxpath). 
+               				ctaxon.getChildAt(0) as c_tax). 
+               				vstaxon.getChildAt(j) as c_tax_add).
+               				ctaxon.getChildAt(0) as c_tax_identry).
+               				centry.getChildren().length; k++) {
+               					               				               				
+               				if (k == 0) {
+               					theEntry.push(
+           							new Array( // level 7           								
+			               				((((((DynCatArrays.lomCClassification[i] as c_cla).
+            			   				ctaxonpath.getChildAt(0) as c_taxpath).
+               							ctaxon.getChildAt(0) as c_tax). 
+               							vstaxon.getChildAt(j) as c_tax_add).
+               							ctaxon.getChildAt(0) as c_tax_identry).
+               							centry.getChildAt(k) as c_ent_add).entry.text,
+               							((((((DynCatArrays.lomCClassification[i] as c_cla).
+               							ctaxonpath.getChildAt(0) as c_taxpath).
+               							ctaxon.getChildAt(0) as c_tax). 
+               							vstaxon.getChildAt(j) as c_tax_add).
+               							ctaxon.getChildAt(0) as c_tax_identry).
+               							centry.getChildAt(k) as c_ent_add).lang.text));               				     		
+	               			} else {
+               					theEntry.push(
+           							new Array( // level 7           								
+			               				((((((DynCatArrays.lomCClassification[i] as c_cla).
+            			   				ctaxonpath.getChildAt(0) as c_taxpath).
+               							ctaxon.getChildAt(0) as c_tax). 
+               							vstaxon.getChildAt(j) as c_tax_add).
+               							ctaxon.getChildAt(0) as c_tax_identry).
+               							centry.getChildAt(k) as c_ent_delete).entry.text,
+               							((((((DynCatArrays.lomCClassification[i] as c_cla).
+               							ctaxonpath.getChildAt(0) as c_taxpath).
+               							ctaxon.getChildAt(0) as c_tax). 
+               							vstaxon.getChildAt(j) as c_tax_add).
+               							ctaxon.getChildAt(0) as c_tax_identry).
+               							centry.getChildAt(k) as c_ent_delete).lang.text));	               		               			
+    		       			}    		       			
+               			}
+               			theTaxon.push(theEntry);
+               			theTaxonFull.push(theTaxon);
+       				}         
+               		theTaxonPath.push(theTaxonFull);
+               		theClaArray.push(theTaxonPath);
+               	 
                		// Description
-               		theDescription = new Array();		
+               		theDescription = new Array(); // level 3 		
                		for (j=0; j<(DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildren().length; j++) {
                			if (j == 0) {                			
-               				theDescription.push(new Array(
+               				theDescription.push(
+               					new Array( // level 4 
+               						new Array ( // level 5
+		               					new Array( // level 6
+        		       						new Array ( // level 7	
                					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).description.text,
-               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).lang.text));
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).lang.text)))));
                			} else {
-               				theDescription.push(new Array(
+               				theDescription.push(
+               				     new Array( // level 4 
+               						new Array ( // level 5
+		               					new Array( // level 6
+        		       						new Array ( // level 7	
                					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).description.text,
-               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).lang.text));
+               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).lang.text)))));
                			}
                		}
                		theClaArray.push(theDescription);    		
                		// Keyword
-               		var theKeyword:Array = new Array();		
-               		for (j=0; j<(DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildren().length; j++) {
+               		var theKeyword:Array = new Array();	// level 3 	
+               		for (j=0; j<(DynCatArrays.lomCClassification[i] as c_cla).ckeyword.getChildren().length; j++) {
                			if (j == 0) {                			
-               				theKeyword.push(new Array(
-               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).description.text,
-               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_add).lang.text));
+               				theKeyword.push(
+               				    new Array( // level 4 
+               						new Array ( // level 5
+		               					new Array( // level 6
+        		       						new Array ( // level 7
+               					((DynCatArrays.lomCClassification[i] as c_cla).ckeyword.getChildAt(j) as c_key_add).keyword.text,
+               					((DynCatArrays.lomCClassification[i] as c_cla).ckeyword.getChildAt(j) as c_key_add).lang.text)))));
                			} else {
-               				theKeyword.push(new Array(
-               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).description.text,
-               					((DynCatArrays.lomCClassification[i] as c_cla).cdescription.getChildAt(j) as c_des_delete).lang.text));
+               				theKeyword.push(
+               				     new Array( // level 4 
+               						new Array ( // level 5
+		               					new Array( // level 6
+        		       						new Array ( // level 7
+               					((DynCatArrays.lomCClassification[i] as c_cla).ckeyword.getChildAt(j) as c_key_delete).keyword.text,
+               					((DynCatArrays.lomCClassification[i] as c_cla).ckeyword.getChildAt(j) as c_key_delete).lang.text)))));
                			}
                		}
                		theClaArray.push(theKeyword); 
                		
-               		// add to annotation
+               		// add to classification
                		passLomObj.lomCClassification.push(theClaArray);
                	}
                	

@@ -8,7 +8,7 @@
 			}			
 		]]>
 	</mx:Script>
-	<mx:TextInput id="description"/>
+	<mx:TextInput id="source"/>
 	<mx:VRule height="15"/>
 	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
 	<mx:VRule height="15"/>	
