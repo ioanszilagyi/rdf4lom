@@ -623,6 +623,180 @@ public class BuildRDF4LOM {
 					}
 				}
 
+				// check if there is some values in Annotation tab
+				// //////////// ANNOTATION
+				// ////////////////////////
+				if (isValueIn(lomCategories, "Annotation")) {
+					for (int i = 0; i < lomCategories.lomAAnotation.length; i++) {
+						Resource Annotation = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Annotation")));
+						LOM.addProperty(model.createProperty(model
+								.expandPrefix("lom:hasElement")), Annotation);
+
+						// check if there is some values in Entity tab
+						// Entity
+						if (isValueIn(lomCategories.lomAAnotation[i][0])) {
+							Annotation.addProperty(model.createProperty(model
+									.expandPrefix("lom:entity")),
+									lomCategories.lomAAnotation[i][0][0][0]);
+						}
+
+						// check if there is some values in Date tab
+						// Date
+						if (isValueIn(lomCategories.lomAAnotation[i][1])) {
+							Annotation.addProperty(model.createProperty(model
+									.expandPrefix("lom:date")),
+									lomCategories.lomAAnotation[i][1][0][0]);
+						}
+
+						// check if there is some values in Description tab
+						// Description
+						if (isValueIn(lomCategories.lomAAnotation[i][2])) {
+							for (int j = 0; j < lomCategories.lomAAnotation[i][2].length; j++) {
+								Annotation
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:description")),
+												model
+														.createLiteral(
+																lomCategories.lomAAnotation[i][2][j][0],
+																lomCategories.lomAAnotation[i][2][j][1]));
+							}
+						}
+					}
+				}
+
+				// check if there is some values in Classification tab
+				// //////////// CLASSIFICATION
+				// ////////////////////////
+				if (isValueIn(lomCategories, "Classification")) {
+					for (int i = 0; i < lomCategories.lomCClassification.length; i++) {
+						Resource Classification = model.createResource(model
+								.createResource(model
+										.expandPrefix("lom:Classification")));
+						LOM.addProperty(model.createProperty(model
+								.expandPrefix("lom:hasElement")),
+								Classification);
+
+						// check if there is some values in Prupose tab
+						// Prupose
+						if (isValueIn(lomCategories.lomCClassification[i][0][0][0][0][0])) {
+							Classification
+									.addProperty(
+											model
+													.createProperty(model
+															.expandPrefix("lom:entity")),
+											lomCategories.lomCClassification[i][0][0][0][0][0][0]);
+						}
+
+						// check if there is some values in Taxon Path tab
+						// Taxon Path
+						if (isValueIn(lomCategories.lomCClassification[i][1])) {
+							Resource TaxonPath = model.createResource(model
+									.createResource(model
+											.expandPrefix("lom:TaxonPath")));
+							Classification
+									.addProperty(
+											model
+													.createProperty(model
+															.expandPrefix("lom:isElementComponentOf")),
+											TaxonPath);
+
+							// check if there is some values in Source tab
+							// Source
+							if (isValueIn(lomCategories.lomCClassification[i][1][0])) {
+								for (int j = 0; j < lomCategories.lomCClassification[i][1][0].length; j++) {
+									TaxonPath
+											.addProperty(
+													model
+															.createProperty(model
+																	.expandPrefix("lom:source")),
+													lomCategories.lomCClassification[i][1][0][j][0][0][0]);
+								}
+							}
+
+							// check if there is some values in Taxon tab
+							// Taxon
+							if (isValueIn(lomCategories.lomCClassification[i][1][1])) {
+								for (int j = 0; j < lomCategories.lomCClassification[i][1][1].length; j++) {
+									Resource Taxon = model
+											.createResource(model
+													.createResource(model
+															.expandPrefix("lom:Taxon")));
+									TaxonPath
+											.addProperty(
+													model
+															.createProperty(model
+																	.expandPrefix("lom:isElementComponentOf")),
+													Taxon);
+
+									// check if there is some values in Id tab
+									// Id
+									if (isValueIn(lomCategories.lomCClassification[i][1][1][j][0][0])) {
+										Taxon
+												.addProperty(
+														model
+																.createProperty(model
+																		.expandPrefix("lom:id")),
+														lomCategories.lomCClassification[i][1][1][j][0][0][0]);
+									}
+
+									// check if there is some values in Entry
+									// tab
+									// Entry
+									if (isValueIn(lomCategories.lomCClassification[i][1][1][j][1][0])) {
+										for (int k = 0; k < lomCategories.lomCClassification[i][1][1][j][1].length; k++) {
+											Taxon
+													.addProperty(
+															model
+																	.createProperty(model
+																			.expandPrefix("lom:entry")),
+															model
+																	.createLiteral(
+																			lomCategories.lomCClassification[i][1][1][j][1][k][0],
+																			lomCategories.lomCClassification[i][1][1][j][1][k][1]));
+										}
+									}
+								}
+							}
+						}
+
+						// check if there is some values in Description tab
+						// Description
+						if (isValueIn(lomCategories.lomCClassification[i][2][0][0][0][0])) {
+							for (int j = 0; j < lomCategories.lomCClassification[i][2].length; j++) {
+								Classification
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:description")),
+												model
+														.createLiteral(
+																lomCategories.lomCClassification[i][2][j][0][0][0][0],
+																lomCategories.lomCClassification[i][2][j][0][0][0][1]));
+							}
+						}
+
+						// check if there is some values in Keyword tab
+						// Keyword
+						if (isValueIn(lomCategories.lomCClassification[i][3][0][0][0][0])) {
+							for (int j = 0; j < lomCategories.lomCClassification[i][3].length; j++) {
+								Classification
+										.addProperty(
+												model
+														.createProperty(model
+																.expandPrefix("lom:keyword")),
+												model
+														.createLiteral(
+																lomCategories.lomCClassification[i][3][j][0][0][0][0],
+																lomCategories.lomCClassification[i][3][j][0][0][0][1]));
+							}
+						}
+					}
+				}
+
 				// start writing the RDF
 				StringWriter out_test = new StringWriter();
 
@@ -720,6 +894,12 @@ public class BuildRDF4LOM {
 			// Relation
 			else if (isValueIn(lomCategories.lomRRelation))
 				return true;
+			// Annotation
+			else if (isValueIn(lomCategories.lomAAnotation))
+				return true;
+			// Classification
+			else if (isValueIn(lomCategories.lomCClassification))
+				return true;
 			else
 				return false;
 
@@ -798,6 +978,18 @@ public class BuildRDF4LOM {
 			}
 			case Relation: {
 				if (isValueIn(lomCategories.lomRRelation))
+					return true;
+				else
+					return false;
+			}
+			case Annotation: {
+				if (isValueIn(lomCategories.lomAAnotation))
+					return true;
+				else
+					return false;
+			}
+			case Classification: {
+				if (isValueIn(lomCategories.lomCClassification))
 					return true;
 				else
 					return false;
@@ -915,8 +1107,9 @@ public class BuildRDF4LOM {
 					for (int m = 0; m < theCategory[i][j][k].length; m++) {
 						for (int n = 0; n < theCategory[i][j][k][m].length; n++) {
 							for (int o = 0; o < theCategory[i][j][k][m][n].length; o++) {
-								for (int p = 0; p < theCategory[i][j][k][m][n][o].length; n++) {
-									if (!theCategory[i][j][k][m][n][o][p].isEmpty()) {
+								for (int p = 0; p < theCategory[i][j][k][m][n][o].length; p++) {
+									if (!theCategory[i][j][k][m][n][o][p]
+											.isEmpty()) {
 										return true;
 									}
 								}

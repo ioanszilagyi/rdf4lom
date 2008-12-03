@@ -6,6 +6,7 @@
 		creationComplete="addComponent()">
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import flash.sampler.NewObjectSample;
 			import mx.collections.ArrayCollection;
 			import as3.DynCatArrays;
