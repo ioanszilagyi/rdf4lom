@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Contact">
-	
+	<mx:VBox width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" >
+		<mx:Label color="white" fontWeight="bold" fontSize="16" text="LASELDI Research Unit" />   
+		<mx:Label color="white" fontWeight="bold" fontSize="16" text="Multimedia Development Center, Montbeliard" />
+		<mx:Label color="white" fontWeight="bold" fontSize="16" text="University of Franche-Comte, France" />
+		<mx:Label text="" />
+		<mx:Label color="white" fontWeight="bold" fontSize="14" text="Radu Balog-Crisan" />
+		<mx:LinkButton fontSize="12" fontStyle="italic" label="radu.balog-crisan@univ-fcomte.fr" /> 
+		<mx:Label color="white" fontWeight="bold" fontSize="14" text="Ioan Roxin" />  
+		<mx:LinkButton fontSize="12" fontStyle="italic" label="ioan.roxin@univ-fcomte.fr"/>
+	</mx:VBox>
 </mx:Canvas>
