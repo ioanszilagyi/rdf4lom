@@ -10,7 +10,7 @@
 	</mx:Script>
 	<mx:TextArea height="80" id="description"/>
 	<mx:VRule height="80"/>
-	<mx:ComboBox width="60" editable="true" id="lang"></mx:ComboBox>
+	<mx:ComboBox editable="true" id="lang"></mx:ComboBox>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
 </mx:HBox>
