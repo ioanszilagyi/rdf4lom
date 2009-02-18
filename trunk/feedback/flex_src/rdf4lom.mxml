@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:panels="rdf4lom.*"
+	layout="absolute">
+	
+	<mx:Metadata>
+        [ResourceBundle("myResources")]
+    </mx:Metadata>
+	
+	<mx:Style source="rdf4lom/css/style.css" />
+	
+	<mx:Script>
+		<![CDATA[
+			import rdf4lom.categories.components.relation.r_rel;
+			import mx.controls.Image;
+			import mx.collections.ArrayCollection;
+			import as3.DynCatArrays;
+			import mx.controls.Alert;					
+			import rdf4lom.categories.components.general.*;
+			import rdf4lom.categories.components.lifecycle.*;
+			import rdf4lom.categories.components.metametadata.*;
+			import rdf4lom.categories.components.technical.*;
+			import rdf4lom.categories.components.educational.e_edu;
+			import rdf4lom.categories.components.rights.*;
+			import rdf4lom.categories.components.annotation.*;
+			import rdf4lom.categories.components.classification.*;
+						
+			private function inEN():void {
+				resourceManager.localeChain = [ "en_US" ];		
+			}
+			
+			private function inFR():void {
+				resourceManager.localeChain = [ "fr_FR" ];
+			}
+			
+			private function buildNewLOM():void {
+				// Clear the buffers
+				DynCatArrays.ReNewDynCatArrays();
+				removeAllChildrenFromLOM();
+
+				// Create the arrays
+				// General
+				DynCatArrays.lomGIdentifier.addItem(new g_ide_add());
+				DynCatArrays.lomGTitle.addItem(new g_tit_add());
+				DynCatArrays.lomGLanguage.addItem(new g_lan_add());
+				DynCatArrays.lomGDescription.addItem(new g_des_add());
+				DynCatArrays.lomGKeyword.addItem(new g_key_add());
+				DynCatArrays.lomGCoverage.addItem(new g_cov_add());
+				DynCatArrays.lomGStructure.addItem(new g_str_add());
+				DynCatArrays.lomGAggregationLevel.addItem(new g_agg_add());	
+				// Life Cycle
+				DynCatArrays.lomLVersion.addItem(new l_ver_add());
+				DynCatArrays.lomLStatus.addItem(new l_sta_add());
+				DynCatArrays.lomLContribute.addItem(new l_con_add());	
+				// Meta-Metadata		
+				DynCatArrays.lomMIdentifier.addItem(new m_ide_add());
+				DynCatArrays.lomMContribute.addItem(new m_con_add());
+				DynCatArrays.lomMMetadataSchema.addItem(new m_met_add());
+				DynCatArrays.lomMLanguage.addItem(new m_lan_add());
+				// Technical		
+				DynCatArrays.lomTFormat.addItem(new t_for_add());
+				DynCatArrays.lomTSize.addItem(new t_siz_add());
+				DynCatArrays.lomTLocation.addItem(new t_loc_add());
+				DynCatArrays.lomTRequirement.addItem(new t_req_delete());
+				DynCatArrays.lomTInstallationRemarks.addItem(new t_ins_add());
+				DynCatArrays.lomTOtherPlatformRequirements.addItem(new t_oth_add());
+				DynCatArrays.lomTDuration.addItem(new t_dur_add());
+				// Educational
+				DynCatArrays.lomEEducational.addItem(new e_edu());
+				// Rights
+				DynCatArrays.lomRCost.addItem(new r_cos_add());
+				DynCatArrays.lomRCopyrightAndOtherRestrictions.addItem(new r_cop_add());
+				DynCatArrays.lomRDescription.addItem(new r_des_add());
+				// Relation
+				DynCatArrays.lomRRelation.addItem(new r_rel());
+				// Annotation
+				DynCatArrays.lomAAnnotation.addItem(new a_ann());
+				// Classification
+				DynCatArrays.lomCClassification.addItem(new c_cla());
+				
+				// Create New LOM
+				// General category
+				LOMForm.cgeneral.gidentifier.addChild(DynCatArrays.lomGIdentifier.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gtitle.addChild(DynCatArrays.lomGTitle.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.glanguage.addChild(DynCatArrays.lomGLanguage.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gdescription.addChild(DynCatArrays.lomGDescription.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gkeyword.addChild(DynCatArrays.lomGKeyword.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gcoverage.addChild(DynCatArrays.lomGCoverage.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gstructure.addChild(DynCatArrays.lomGStructure.getItemAt(0) as DisplayObject);
+				LOMForm.cgeneral.gaggregationlevel.addChild(DynCatArrays.lomGAggregationLevel.getItemAt(0) as DisplayObject);				
+				// Life Cycle category				
+				LOMForm.clifecycle.lversion.addChild(DynCatArrays.lomLVersion.getItemAt(0) as DisplayObject);
+				LOMForm.clifecycle.lstatus.addChild(DynCatArrays.lomLStatus.getItemAt(0) as DisplayObject);
+				LOMForm.clifecycle.lcontribute.addChild(DynCatArrays.lomLContribute.getItemAt(0) as DisplayObject);
+				// Meta-Metadata category
+				LOMForm.cmetametadata.midentifier.addChild(DynCatArrays.lomMIdentifier.getItemAt(0) as DisplayObject);
+				LOMForm.cmetametadata.mcontribute.addChild(DynCatArrays.lomMContribute.getItemAt(0) as DisplayObject);
+				LOMForm.cmetametadata.mmetadataschema.addChild(DynCatArrays.lomMMetadataSchema.getItemAt(0) as DisplayObject);
+				LOMForm.cmetametadata.mlanguage.addChild(DynCatArrays.lomMLanguage.getItemAt(0) as DisplayObject);
+				// Technical category
+				LOMForm.ctechnical.tformat.addChild(DynCatArrays.lomTFormat.getItemAt(0) as DisplayObject);
+				LOMForm.ctechnical.tsize.addChild(DynCatArrays.lomTSize.getItemAt(0) as DisplayObject)
+				LOMForm.ctechnical.tlocation.addChild(DynCatArrays.lomTLocation.getItemAt(0) as DisplayObject)
+				LOMForm.ctechnical.trequirement.addChild(DynCatArrays.lomTRequirement.getItemAt(0) as DisplayObject);				
+				LOMForm.ctechnical.tinstallationremarks.addChild(DynCatArrays.lomTInstallationRemarks.getItemAt(0) as DisplayObject);
+				LOMForm.ctechnical.totherplatformrequirements.addChild(DynCatArrays.lomTOtherPlatformRequirements.getItemAt(0) as DisplayObject);
+				LOMForm.ctechnical.tduration.addChild(DynCatArrays.lomTDuration.getItemAt(0) as DisplayObject);
+				// Educational
+				LOMForm.ceducational.vseducational.addChild(DynCatArrays.lomEEducational.getItemAt(0) as DisplayObject);
+				// Rights
+				LOMForm.crights.rcost.addChild(DynCatArrays.lomRCost.getItemAt(0) as DisplayObject);
+				LOMForm.crights.rcopyrightandotherrestrictions.addChild(DynCatArrays.lomRCopyrightAndOtherRestrictions.getItemAt(0) as DisplayObject);
+				LOMForm.crights.rdescription.addChild(DynCatArrays.lomRDescription.getItemAt(0) as DisplayObject);
+				// Relation
+				LOMForm.crelation.vsrelational.addChild(DynCatArrays.lomRRelation.getItemAt(0) as DisplayObject);
+				// Annotation
+				LOMForm.cannotation.vsannotation.addChild(DynCatArrays.lomAAnnotation.getItemAt(0) as DisplayObject);
+				// Classification
+				LOMForm.cclassification.vsclassification.addChild(DynCatArrays.lomCClassification.getItemAt(0) as DisplayObject);
+			}
+			
+			private function removeAllChildrenFromLOM():void {
+				// General
+				LOMForm.cgeneral.gidentifier.removeAllChildren();
+				LOMForm.cgeneral.gtitle.removeAllChildren();
+				LOMForm.cgeneral.glanguage.removeAllChildren();
+				LOMForm.cgeneral.gdescription.removeAllChildren();
+				LOMForm.cgeneral.gkeyword.removeAllChildren();
+				LOMForm.cgeneral.gcoverage.removeAllChildren();
+				LOMForm.cgeneral.gstructure.removeAllChildren();
+				LOMForm.cgeneral.gaggregationlevel.removeAllChildren();
+				
+				// Life Cycle
+				LOMForm.clifecycle.lversion.removeAllChildren();
+				LOMForm.clifecycle.lstatus.removeAllChildren();
+				LOMForm.clifecycle.lcontribute.removeAllChildren();
+				
+				// Meta-Metadata
+				LOMForm.cmetametadata.midentifier.removeAllChildren();
+				LOMForm.cmetametadata.mcontribute.removeAllChildren();
+				LOMForm.cmetametadata.mmetadataschema.removeAllChildren();
+				LOMForm.cmetametadata.mlanguage.removeAllChildren();
+				
+				// Techincal
+				LOMForm.ctechnical.tformat.removeAllChildren();
+				LOMForm.ctechnical.tsize.removeAllChildren();
+				LOMForm.ctechnical.tlocation.removeAllChildren();
+				LOMForm.ctechnical.trequirement.removeAllChildren();
+				LOMForm.ctechnical.tinstallationremarks.removeAllChildren();
+				LOMForm.ctechnical.totherplatformrequirements.removeAllChildren();
+				LOMForm.ctechnical.tduration.removeAllChildren();
+				
+				// Educational
+				LOMForm.ceducational.vseducational.removeAllChildren();
+				
+				// Rights
+				LOMForm.crights.rcost.removeAllChildren();
+				LOMForm.crights.rcopyrightandotherrestrictions.removeAllChildren();
+				LOMForm.crights.rdescription.removeAllChildren();
+				
+				// Relation
+				LOMForm.crelation.vsrelational.removeAllChildren();
+				
+				// Annotation
+				LOMForm.cannotation.vsannotation.removeAllChildren();
+				
+				// Classification
+				LOMForm.cclassification.vsclassification.removeAllChildren();					
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:VBox height="100%" width="100%" verticalGap="0">
+		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">
+			
+			<mx:Button icon="@Embed(source='image/uk.png')" click="inEN();" width="26" height="22"/>
+			<mx:Button icon="@Embed(source='image/fr.png')" click="inFR();" width="26" height="22"/>
+			
+			<mx:Button label="{resourceManager.getString('myResources', 'NEW')}" width="90" click="buildNewLOM();"/>
+			<mx:Button label="{resourceManager.getString('myResources', 'OPEN')}" width="90" visible="false" />
+			
+			<mx:HBox horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12" width="100%" verticalAlign="middle">
+				<!--<mx:Button icon="@Embed(source='image/logo.gif')"/>-->
+				<mx:Image source="image/logo.gif" />
+			</mx:HBox>
+		</mx:HBox>
+		
+		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">			
+			<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
+			<mx:TabBar dataProvider="viewstack1" />
+		</mx:HBox>	
+				
+		<mx:HRule width="100%"/>
+		
+		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all" creationComplete="buildNewLOM();" >
+			<panels:contact />
+			<panels:createlom id="LOMForm" />
+			<panels:rdf4lomresource />		
+		</mx:ViewStack>	
+	</mx:VBox>
+<!-- dd-->
+</mx:Application>

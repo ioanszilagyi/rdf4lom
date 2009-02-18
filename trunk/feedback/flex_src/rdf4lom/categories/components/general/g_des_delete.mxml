@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top">
+
+	<mx:Script>
+		<![CDATA[
+			import as3.DynCatArrays;
+			private function removeComponent():void {
+				DynCatArrays.lomGDescription.removeItemAt(DynCatArrays.lomGDescription.getItemIndex(this));
+				parent.removeChild(this);
+			}			
+		]]>
+	</mx:Script>
+	<mx:TextArea height="80" id="description"/>
+	<mx:VRule height="80"/>
+	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
+</mx:HBox>

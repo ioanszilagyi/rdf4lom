@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top">
+
+	<mx:Script>
+		<![CDATA[
+			private function addComponent():void {
+				parent.addChild(new c_sou_delete());
+			}
+		]]>
+	</mx:Script>
+	<mx:TextInput id="source"/>
+	<mx:VRule height="15"/>
+	<mx:ComboBox editable="true" id="lang"></mx:ComboBox>
+	<mx:VRule height="15"/>	
+	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
+</mx:HBox>

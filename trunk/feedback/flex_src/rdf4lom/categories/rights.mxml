@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="{resourceManager.getString('myResources', 'RIGHTS')}">
+				
+	<mx:Style source="rdf4lom/css/style.css" />
+    
+	<mx:Accordion id="accordion" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="6.1 {resourceManager.getString('myResources', 'COST')}" id="rcost" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="6.2 {resourceManager.getString('myResources', 'COPYRIGHTANDOTHERRESTRICTIONS')}" id="rcopyrightandotherrestrictions" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="6.3 {resourceManager.getString('myResources', 'DESCRIPTION')}" id="rdescription" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>		
+</mx:Canvas>
