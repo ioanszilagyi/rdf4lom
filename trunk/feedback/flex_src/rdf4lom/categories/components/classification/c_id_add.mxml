@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle">
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle" width="100%">
 
-	<mx:TextInput id="cid"/>
+	<mx:TextInput width="100%" id="cid"/>
 </mx:HBox>

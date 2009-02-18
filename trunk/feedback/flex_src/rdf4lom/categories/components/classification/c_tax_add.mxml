@@ -21,9 +21,10 @@
 	</mx:Script>
 	<mx:Style source="rdf4lom/css/style.css" />
         
-	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
-	<mx:VRule height="30"/>
 	<mx:Accordion id="relation" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
 		<mx:VBox label=" {resourceManager.getString('myResources', 'TAXON')}" id="ctaxon" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />		
 	</mx:Accordion>
+	<mx:VRule height="30"/>
+	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
+		
 </mx:HBox>
