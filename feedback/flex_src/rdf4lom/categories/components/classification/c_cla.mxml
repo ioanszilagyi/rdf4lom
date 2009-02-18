@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		verticalAlign="top" 
+		label="{resourceManager.getString('myResources', 'CLASSIFICATION')} #{parent.getChildIndex(this)+1}"
+		width="100%"
+		creationComplete="addComponent()">
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Application;
+			import flash.sampler.NewObjectSample;
+			import mx.collections.ArrayCollection;
+			import as3.DynCatArrays;
+			
+			private function addComponent():void {
+				cprupose.addChild(new c_pru_add());
+				ctaxonpath.addChild(new c_taxpath());
+				cdescription.addChild(new c_des_add());
+				ckeyword.addChild(new c_key_add);
+			}
+			
+			private function removeComponent():void {
+				DynCatArrays.lomCClassification.removeItemAt(DynCatArrays.lomCClassification.getItemIndex(this));
+				parent.removeChild(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:Style source="rdf4lom/css/style.css" />
+        
+	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
+	<mx:VRule height="30"/>
+	<mx:Accordion id="classification" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="9.1 {resourceManager.getString('myResources', 'PRUPOSE')}" id="cprupose" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="9.2 {resourceManager.getString('myResources', 'TAXONPATH')}" id="ctaxonpath" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="9.3 {resourceManager.getString('myResources', 'DESCRIPTION')}" id="cdescription" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="9.4 {resourceManager.getString('myResources', 'KEYWORD')}" id="ckeyword" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
+</mx:HBox>

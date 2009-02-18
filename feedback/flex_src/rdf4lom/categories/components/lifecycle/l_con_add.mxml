@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top">
+	<!--
+		According with "UK Learning Object Metadata Core" (version 0.3 1204 from 2008-06-10 19:23:20)  
+		Entity element is a vCard (http://www.imc.org/pdi/), so just the link where this vCard resource 
+		ca be found.
+	-->
+	<mx:Script>
+		<![CDATA[
+			import as3.DynCatArrays;			
+			
+			private function addComponent():void {
+				var theDisObj:DisplayObject = new l_con_delete();
+				DynCatArrays.lomLContribute.addItem(theDisObj);
+				parent.addChild(theDisObj);
+			}			
+		]]>
+	</mx:Script>
+	<mx:VBox id="lrole" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" borderStyle="solid" borderColor="#000000">
+		<mx:HBox verticalAlign="middle">
+			<mx:Label text="2.3.1 {resourceManager.getString('myResources', 'ROLE')}" />
+			<mx:ComboBox editable="true" id="role"></mx:ComboBox>			
+		</mx:HBox>
+		<mx:HBox verticalAlign="middle">
+			<mx:Label text="2.3.2 {resourceManager.getString('myResources', 'ENTITY')}:" />
+			<mx:TextInput id="entity"/>		
+		</mx:HBox>
+		<mx:HBox verticalAlign="middle">
+			<mx:Label text="2.3.3 {resourceManager.getString('myResources', 'DATE')}" />
+			<mx:DateField id="date"/>	
+		</mx:HBox>		
+	</mx:VBox>
+	<mx:VRule height="30"/>
+	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
+</mx:HBox>

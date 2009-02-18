@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle">
+
+	<mx:Script>
+		<![CDATA[
+			import as3.DynCatArrays;
+			private function addComponent():void {
+				var theDisObj:DisplayObject = new t_for_delete();
+				DynCatArrays.lomTFormat.addItem(theDisObj);
+				parent.addChild(theDisObj);
+			}			
+		]]>
+	</mx:Script>
+	<mx:CheckBox id="format_nd" label="non-digital"/>
+	<mx:VRule height="15"/>
+	<mx:TextInput id="format"/>
+	<mx:VRule height="15"/>
+	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
+</mx:HBox>
