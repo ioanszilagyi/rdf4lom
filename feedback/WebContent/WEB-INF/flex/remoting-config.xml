@@ -16,4 +16,11 @@
         </properties>
         <adapter ref="java-object" />
     </destination>
+
+   	<destination id="remoteClass2">
+        <properties>
+            <source>fr.slcms.rdf4lom.SaveToDB</source>
+        </properties>
+        <adapter ref="java-object" />
+    </destination>
 </service>

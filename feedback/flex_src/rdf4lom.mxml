@@ -12,6 +12,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import as3.ComAndVisits;
 			import rdf4lom.categories.components.relation.r_rel;
 			import mx.controls.Image;
 			import mx.collections.ArrayCollection;
@@ -168,36 +169,126 @@
 				// Classification
 				LOMForm.cclassification.vsclassification.removeAllChildren();					
 			}
+			
+		    private function mouseClickLogoUFC():void{ 
+        		navigateToURL(new URLRequest("http://www.univ-fcomte.fr/"),"_blank");    
+    		}
+    		private function mouseClickLogoLASELDI():void{ 
+        		navigateToURL(new URLRequest("http://194.57.85.190/"),"_blank");    
+    		}
+    		
+    		private function goToRDF4LOM():void {
+    			id_form.visible = false;
+    			id_form.width = 0;
+    			id_form.height = 0;
+    			tabbar_vs.visible = true;
+    			viewstack1.visible = true;
+    		}
+    		
+    		// Import StringValidator.
+    		import mx.events.ValidationResultEvent;
+            import mx.validators.StringValidator;
+
+            private var v:StringValidator = new StringValidator();
+ 			
+ 			// Define variable for storing the validation event object.
+            public var vResult:ValidationResultEvent;
+            
+            private function performValidation():void {
+                v.minLength = 3;
+                // Set the listener property to the component 
+                // used to display validation errors. 
+                v.listener=nom;
+                vResult = v.validate(nom.text);
+                
+                if (vResult.type==ValidationResultEvent.VALID) {
+                    // Validation succeeded.
+                         	 
+            		var passCoViObj:ComAndVisits = new ComAndVisits();
+                    
+                    passCoViObj.name = nom.text;
+                    passCoViObj.organisation = org.text;
+                    passCoViObj.email = email.text;
+                    
+                    // send to java to save in db the statistics
+               		remoteOjb2.SaveVisitsToDB(passCoViObj);
+                    
+                    goToRDF4LOM();
+                }
+                else {
+                    // Validation failed.
+                }
+            }
+            
+            import mx.rpc.events.*;
+            
+            public function handleFault(event:FaultEvent):void {
+                // Handle fault.
+                Alert.show(event.fault.faultString+" -1- "+event.fault.rootCause.toString()+" -2- "+event.fault.faultCode+" -3- "+event.fault.getStackTrace()+" -4- "+event.fault.message.toString()+" -5- "+event.fault.faultDetail+" -6- "+event.fault.errorID, "Fault");               
+            }
+            
+            public function resultHandler(event:ResultEvent):void
+            {
+                // Alert.show(event.result as String);
+            }
 		]]>
 	</mx:Script>
 	
+	<mx:RemoteObject id="remoteOjb2" destination="remoteClass2" fault="handleFault(event)" >
+        <mx:method name="SaveVisitsToDB" result="resultHandler(event)"/>
+    </mx:RemoteObject>
+    
 	<mx:VBox height="100%" width="100%" verticalGap="0">
 		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">
+			<mx:Image source="image/logo_laseldi_white2.png" click="mouseClickLogoLASELDI();" useHandCursor="true" buttonMode="true" />
 			
-			<mx:Button icon="@Embed(source='image/uk.png')" click="inEN();" width="26" height="22"/>
-			<mx:Button icon="@Embed(source='image/fr.png')" click="inFR();" width="26" height="22"/>
+			<mx:Button icon="@Embed(source='image/uk.png')" click="inEN();" width="40" height="25"/>
+			<mx:Button icon="@Embed(source='image/fr.png')" click="inFR();" width="40" height="25"/>
 			
-			<mx:Button label="{resourceManager.getString('myResources', 'NEW')}" width="90" click="buildNewLOM();"/>
-			<mx:Button label="{resourceManager.getString('myResources', 'OPEN')}" width="90" visible="false" />
-			
-			<mx:HBox horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12" width="100%" verticalAlign="middle">
-				<!--<mx:Button icon="@Embed(source='image/logo.gif')"/>-->
-				<mx:Image source="image/logo.gif" />
+			<mx:HBox horizontalAlign="right" cornerRadius="20" borderColor="#000000" borderStyle="none" themeColor="#000000" borderThickness="12" width="100%" verticalAlign="bottom">
+				<!--<mx:Button icon="@Embed(source='image/logo.gif')"/>-->				
+				<!--<mx:Image source="image/logo_ufc.png" click="mouseClickLogoUFC();" />-->				
+				<mx:Image source="image/logoUFC.png" click="mouseClickLogoUFC();" useHandCursor="true" buttonMode="true" />	
 			</mx:HBox>
 		</mx:HBox>
 		
 		<mx:HBox width="100%" verticalAlign="middle" horizontalAlign="center">			
 			<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
-			<mx:TabBar dataProvider="viewstack1" />
+			<mx:TabBar id="tabbar_vs" dataProvider="viewstack1" visible="false" />			
 		</mx:HBox>	
 				
 		<mx:HRule width="100%"/>
 		
-		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all" creationComplete="buildNewLOM();" >
+		<mx:VBox id="id_form" width="100%" height="100%" visible="true">
+			<mx:Text height="86" width="100%" color="white" fontWeight="bold" fontSize="14" htmlText="{resourceManager.getString('myResources', 'TEXTINERFACE_2')}" />
+			
+			<mx:Text height="23" width="896" color="white" fontWeight="bold" fontSize="14" htmlText="{resourceManager.getString('myResources', 'TEXTINERFACE_1')}" />
+
+			<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+				<mx:Form width="500">
+					<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_3')}" width="100%" fontWeight="bold" required="true">
+						<mx:TextInput width="100%" id="nom"/>
+					</mx:FormItem>
+					<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_4')}" width="100%" fontWeight="bold" required="false">
+						<mx:TextInput width="100%" id="org"/>
+					</mx:FormItem>
+					<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_5')}" width="100%" fontWeight="bold" required="false">
+						<mx:TextInput width="100%" id="email"/>
+					</mx:FormItem>					
+				</mx:Form>		
+				<mx:ControlBar>
+					<mx:Button id="submit" label="Test RDF4LOM" click="performValidation();"/>
+				</mx:ControlBar>
+			</mx:Panel>
+		</mx:VBox>
+		
+		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all" creationComplete="buildNewLOM();" visible="false">	
 			<panels:contact />
 			<panels:createlom id="LOMForm" />
 			<panels:rdf4lomresource />		
 		</mx:ViewStack>	
 	</mx:VBox>
+	
 <!-- dd-->
+
 </mx:Application>

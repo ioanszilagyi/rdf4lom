@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	    showCloseButton="true"
+        styleName="noPadding"
+        close="resetandclose();"
+        resize="init();">
+        
+	<mx:Script>
+		<![CDATA[
+			import as3.ComAndVisits;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+		
+			private function init():void {
+				PopUpManager.centerPopUp(this);
+				this.setFocus();
+			}
+					
+			private function saveCommentsToDB():void {
+				var passCoViObj:ComAndVisits = new ComAndVisits();
+                    
+                passCoViObj.comments = thecomments.text;
+                    
+                // send to java to save in db the statistics
+               	remoteOjb3.SaveCommentsToDB(passCoViObj);
+				
+				// second here
+				PopUpManager.removePopUp(this);		
+			}
+			
+			private function resetandclose():void {				
+				// and here
+				PopUpManager.removePopUp(this);
+			}
+			
+			// Import StringValidator.
+    		import mx.events.ValidationResultEvent;
+            import mx.validators.StringValidator;
+
+            private var v:StringValidator = new StringValidator();
+ 			
+ 			// Define variable for storing the validation event object.
+            public var vResult:ValidationResultEvent;
+            
+            private function performValidation():void {
+                v.minLength = 3;
+                // Set the listener property to the component 
+                // used to display validation errors. 
+                v.listener=thecomments;
+                vResult = v.validate(thecomments.text);
+                
+                if (vResult.type==ValidationResultEvent.VALID) {
+                    // Validation succeeded.
+                    saveCommentsToDB();
+                }
+                else {
+                    // Validation failed.
+                }
+            }
+            
+            import mx.rpc.events.*;
+            
+            public function handleFault(event:FaultEvent):void {
+                // Handle fault.
+                Alert.show(event.fault.faultString+" -1- "+event.fault.rootCause.toString()+" -2- "+event.fault.faultCode+" -3- "+event.fault.getStackTrace()+" -4- "+event.fault.message.toString()+" -5- "+event.fault.faultDetail+" -6- "+event.fault.errorID, "Fault");               
+            }
+            
+            public function resultHandler(event:ResultEvent):void
+            {            	
+                // Alert.show(event.result as String);
+            }
+		]]>
+	</mx:Script>
+	
+	<mx:RemoteObject id="remoteOjb3" destination="remoteClass2" fault="handleFault(event)" >
+        <mx:method name="SaveCommentsToDB" result="resultHandler(event)"/>
+    </mx:RemoteObject>
+	
+	<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+		<mx:Form width="500">
+			<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_12')}" width="100%" fontWeight="bold" required="true">
+				<mx:TextArea height="200" width="100%" id="thecomments"/>
+			</mx:FormItem>					
+		</mx:Form>		
+		<mx:ControlBar>
+			<mx:Button label="Send" click="performValidation();"/>
+			<mx:Button label="Cancel" click="resetandclose();"/>
+		</mx:ControlBar>
+	</mx:Panel>
+ 	
+</mx:TitleWindow>

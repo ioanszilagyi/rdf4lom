@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle">
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="middle" width="100%">
 
 	<mx:Script>
 		<![CDATA[
@@ -12,7 +12,7 @@
 	</mx:Script>
 	<mx:CheckBox id="format_nd" label="non-digital"/>
 	<mx:VRule height="15"/>
-	<mx:TextInput id="format"/>
+	<mx:TextInput width="100%" id="format"/>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
 </mx:HBox>

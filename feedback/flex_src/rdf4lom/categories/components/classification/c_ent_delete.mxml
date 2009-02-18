@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top">
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top" width="100%">
 
 	<mx:Script>
 		<![CDATA[
@@ -8,9 +8,9 @@
 			}			
 		]]>
 	</mx:Script>
-	<mx:TextInput id="entry"/>
+	<mx:TextInput width="50%" id="entry"/>
 	<mx:VRule height="15"/>
-	<mx:ComboBox editable="true" id="lang"></mx:ComboBox>
+	<mx:ComboBox width="50%" editable="true" id="lang"></mx:ComboBox>
 	<mx:VRule height="15"/>
 	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
 </mx:HBox>

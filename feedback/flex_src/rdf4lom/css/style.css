@@ -15,14 +15,18 @@ TextInput {
    dropShadowEnabled: true;
 }
 
+TabBar {
+	horizontalGap: 5;
+}
+
 Accordion {
-   borderStyle: solid;
+   borderStyle: outset;
    borderThickness: 0;
    backgroundAlpha: 0.5;
    selectedFillColors: #354259, #354259;
    backgroundColor: #6f82a5;
    borderColor: #f29000;
-   headerStyleName: "AccordionCategoriesHeaderStyle";
+   headerStyleName: "AccordionCategoriesHeaderStyle";	
 }
 
 .AccordionCategoriesHeaderStyle {
@@ -57,7 +61,7 @@ TextArea {
 Button {
    cornerRadius: 12;
    themeColor: #f29000;
-   fontSize: 16;
+   fontSize: 14;
 }
 
 VRule {

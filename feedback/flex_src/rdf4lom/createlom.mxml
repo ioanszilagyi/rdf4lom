@@ -2,7 +2,7 @@
 <mx:Canvas 
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:categories="rdf4lom.categories.*"
-	label="LOM Wizard">
+	label="{resourceManager.getString('myResources', 'TEXTINERFACE_7')}">
 	
 	<!--<mx:ToggleButtonBar dataProvider="viewstack1" />-->
 	<mx:TabBar dataProvider="viewstack1" />
