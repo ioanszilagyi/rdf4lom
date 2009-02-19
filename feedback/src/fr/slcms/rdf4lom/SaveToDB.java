@@ -10,6 +10,9 @@ import java.sql.*;
  */
 public class SaveToDB {
 
+	public static String theIPAddress;
+	public static String theHostName;
+	
 	public String SaveCommentsToDB(ComAndVisits passCoViObj) {
 		 try {
 		      Statement stmt;
@@ -26,7 +29,10 @@ public class SaveToDB {
 		      // user named auser with the password
 		      // drowssap, which is password spelled
 		      // backwards.
+		      // online
 		      Connection con = DriverManager.getConnection(url,"root", "slcms32cd2501");
+		      // localhost
+		      // Connection con = DriverManager.getConnection(url,"root", "admin");
 
 		      //Display URL and connection information
 		      //System.out.println("URL: " + url);
@@ -36,7 +42,7 @@ public class SaveToDB {
 		      stmt = con.createStatement();
 
 		      //Insert some values into the table
-		      stmt.executeUpdate("INSERT INTO comments(comment) VALUES ('"+ passCoViObj.comments +"')");
+		      stmt.executeUpdate("INSERT INTO comments(comment, ip, hostname) VALUES ('"+ passCoViObj.comments +"', '"+ theIPAddress +"', '"+ theHostName +"')");
 
 		      con.close();
 		    }catch( Exception e ) {
@@ -61,7 +67,10 @@ public class SaveToDB {
 		      // user named auser with the password
 		      // drowssap, which is password spelled
 		      // backwards.
-		      Connection con = DriverManager.getConnection(url, "root", "slcms32cd2501");
+		      // online
+		      Connection con = DriverManager.getConnection(url,"root", "slcms32cd2501");
+		      // localhost
+		      //Connection con = DriverManager.getConnection(url,"root", "admin");
 
 		      //Display URL and connection information
 		      //System.out.println("URL: " + url);
@@ -71,7 +80,7 @@ public class SaveToDB {
 		      stmt = con.createStatement();
 
 		      //Insert some values into the table
-		      stmt.executeUpdate("INSERT INTO visits(name, organisation, email) VALUES ('"+ passCoViObj.name +"', '"+ passCoViObj.organisation +"', '"+ passCoViObj.email +"')");
+		      stmt.executeUpdate("INSERT INTO visits(name, organisation, email, ip, hostname) VALUES ('"+ passCoViObj.name +"', '"+ passCoViObj.organisation +"', '"+ passCoViObj.email +"', '"+ theIPAddress +"', '"+ theHostName +"')");
 
 		      con.close();
 		    }catch( Exception e ) {
