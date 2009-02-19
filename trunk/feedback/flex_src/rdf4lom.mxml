@@ -12,6 +12,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.EmailValidator;
 			import as3.ComAndVisits;
 			import rdf4lom.categories.components.relation.r_rel;
 			import mx.controls.Image;
@@ -189,19 +190,37 @@
     		import mx.events.ValidationResultEvent;
             import mx.validators.StringValidator;
 
-            private var v:StringValidator = new StringValidator();
+            private var sv:StringValidator = new StringValidator();
+ 			private var ev:EmailValidator = new EmailValidator();
  			
  			// Define variable for storing the validation event object.
-            public var vResult:ValidationResultEvent;
+            public var svResult:ValidationResultEvent;
+            public var evResult:ValidationResultEvent;
             
             private function performValidation():void {
-                v.minLength = 3;
+                sv.minLength = 3;
+                sv.maxLength = 30;
+                sv.tooShortError = "Min 3 charachters"; 
+                sv.tooLongError = "Max 30 charachters";
+                
+                ev.invalidIPDomainError = "The IP domain in your e-mail address is incorrectly formatted.";
+                ev.invalidCharError = "Your e-mail address contains invalid characters.";
+                ev.invalidDomainError = "The domain in your e-mail address is incorrectly formatted.";
+                ev.invalidPeriodsInDomainError = "The domain in your e-mail address has consecutive periods."; 
+    			ev.missingAtSignError = "An at sign (@) is missing in your e-mail address.";
+    			ev.missingPeriodInDomainError = "The domain in your e-mail address is missing a period."; 
+    			ev.missingUsernameError = "The username in your e-mail address is missing."; 
+    			ev.tooManyAtSignsError = "Your e-mail address contains too many @ characters.";
+                
                 // Set the listener property to the component 
                 // used to display validation errors. 
-                v.listener=nom;
-                vResult = v.validate(nom.text);
+                sv.listener=nom;
+                ev.listener=email;
                 
-                if (vResult.type==ValidationResultEvent.VALID) {
+                svResult = sv.validate(nom.text);
+                evResult = ev.validate(email.text); 
+                
+                if (svResult.type==ValidationResultEvent.VALID && evResult.type==ValidationResultEvent.VALID) {
                     // Validation succeeded.
                          	 
             		var passCoViObj:ComAndVisits = new ComAndVisits();
@@ -272,7 +291,7 @@
 					<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_4')}" width="100%" fontWeight="bold" required="false">
 						<mx:TextInput width="100%" id="org"/>
 					</mx:FormItem>
-					<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_5')}" width="100%" fontWeight="bold" required="false">
+					<mx:FormItem label="{resourceManager.getString('myResources', 'TEXTINERFACE_5')}" width="100%" fontWeight="bold" required="true">
 						<mx:TextInput width="100%" id="email"/>
 					</mx:FormItem>					
 				</mx:Form>		
@@ -288,7 +307,7 @@
 			<panels:rdf4lomresource />		
 		</mx:ViewStack>	
 	</mx:VBox>
-	
+
 <!-- dd-->
 
 </mx:Application>

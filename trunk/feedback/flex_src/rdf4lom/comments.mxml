@@ -45,7 +45,8 @@
             public var vResult:ValidationResultEvent;
             
             private function performValidation():void {
-                v.minLength = 3;
+                v.minLength = 5;
+                v.tooShortError = "Min 5 charachters";
                 // Set the listener property to the component 
                 // used to display validation errors. 
                 v.listener=thecomments;

@@ -25,9 +25,12 @@ USE `rdf4lom`;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `comment` text,
+  `ip` varchar(20) DEFAULT NULL,
+  `hostname` varchar(250) DEFAULT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # Structure for the `visits` table : 
@@ -38,9 +41,12 @@ CREATE TABLE `visits` (
   `name` varchar(50) DEFAULT NULL,
   `organisation` varchar(150) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
+  `ip` varchar(20) DEFAULT NULL,
+  `hostname` varchar(20) DEFAULT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
 
