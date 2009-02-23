@@ -51,13 +51,12 @@ var requiredRevision = 124;
 <body scroll="no">
 
 <% 
-
-	String ipAddress  = request.getHeader("X-FORWARDED-FOR");  
+	String ipAddress  = request.getHeader("HTTP_X_FORWARDED_FOR");  
 	if(ipAddress == null) {  
   		ipAddress = request.getRemoteAddr();  
 	}  
 
-	String hostName = request.getRemoteHost();
+	String hostName = java.net.InetAddress.getLocalHost().getHostAddress();
 	
 	System.out.println("ipAddress: "+ipAddress+" and HostName: "+hostName);
 
