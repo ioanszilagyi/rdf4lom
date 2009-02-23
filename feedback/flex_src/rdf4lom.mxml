@@ -200,42 +200,44 @@
             private function performValidation():void {
                 sv.minLength = 3;
                 sv.maxLength = 30;
-                sv.tooShortError = "Min 3 charachters"; 
-                sv.tooLongError = "Max 30 charachters";
+                sv.tooShortError = resourceManager.getString('myResources', 'TEXTINERFACE_13'); 
+                sv.tooLongError = resourceManager.getString('myResources', 'TEXTINERFACE_14');
                 
-                ev.invalidIPDomainError = "The IP domain in your e-mail address is incorrectly formatted.";
-                ev.invalidCharError = "Your e-mail address contains invalid characters.";
-                ev.invalidDomainError = "The domain in your e-mail address is incorrectly formatted.";
-                ev.invalidPeriodsInDomainError = "The domain in your e-mail address has consecutive periods."; 
-    			ev.missingAtSignError = "An at sign (@) is missing in your e-mail address.";
-    			ev.missingPeriodInDomainError = "The domain in your e-mail address is missing a period."; 
-    			ev.missingUsernameError = "The username in your e-mail address is missing."; 
-    			ev.tooManyAtSignsError = "Your e-mail address contains too many @ characters.";
+                ev.invalidIPDomainError = resourceManager.getString('myResources', 'TEXTINERFACE_15');
+                ev.invalidCharError = resourceManager.getString('myResources', 'TEXTINERFACE_16');
+                ev.invalidDomainError = resourceManager.getString('myResources', 'TEXTINERFACE_17');          
+                ev.invalidPeriodsInDomainError = resourceManager.getString('myResources', 'TEXTINERFACE_18'); 
+    			ev.missingAtSignError = resourceManager.getString('myResources', 'TEXTINERFACE_19');
+    			ev.missingPeriodInDomainError = resourceManager.getString('myResources', 'TEXTINERFACE_20'); 
+    			ev.missingUsernameError = resourceManager.getString('myResources', 'TEXTINERFACE_21'); 
+    			ev.tooManyAtSignsError = resourceManager.getString('myResources', 'TEXTINERFACE_22');
                 
                 // Set the listener property to the component 
                 // used to display validation errors. 
                 sv.listener=nom;
                 ev.listener=email;
                 
-                svResult = sv.validate(nom.text);
-                evResult = ev.validate(email.text); 
+                if (isNaN(parseFloat(nom.text))) {                  
+                	svResult = sv.validate(nom.text);
+                	evResult = ev.validate(email.text); 
                 
-                if (svResult.type==ValidationResultEvent.VALID && evResult.type==ValidationResultEvent.VALID) {
-                    // Validation succeeded.
+                	if (svResult.type==ValidationResultEvent.VALID && evResult.type==ValidationResultEvent.VALID) {
+	                    // Validation succeeded.
                          	 
-            		var passCoViObj:ComAndVisits = new ComAndVisits();
+    	        		var passCoViObj:ComAndVisits = new ComAndVisits();
                     
-                    passCoViObj.name = nom.text;
-                    passCoViObj.organisation = org.text;
-                    passCoViObj.email = email.text;
-                    
-                    // send to java to save in db the statistics
-               		remoteOjb2.SaveVisitsToDB(passCoViObj);
-                    
-                    goToRDF4LOM();
-                }
-                else {
-                    // Validation failed.
+        	            passCoViObj.name = nom.text;
+            	        passCoViObj.organisation = org.text;
+                	    passCoViObj.email = email.text;
+                    	
+	                    // send to java to save in db the statistics
+    	           		remoteOjb2.SaveVisitsToDB(passCoViObj);
+        	            
+            	        goToRDF4LOM();
+                	}
+	                else {
+    	                // Validation failed.
+        	        }
                 }
             }
             
@@ -301,10 +303,10 @@
 			</mx:Panel>
 		</mx:VBox>
 		
-		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all" creationComplete="buildNewLOM();" visible="false">	
-			<panels:contact />
+		<mx:ViewStack id="viewstack1" width="100%" height="100%" creationPolicy="all" creationComplete="buildNewLOM();" visible="false">			
 			<panels:createlom id="LOMForm" />
-			<panels:rdf4lomresource />		
+			<panels:rdf4lomresource />	
+			<panels:contact />	
 		</mx:ViewStack>	
 	</mx:VBox>
 

@@ -46,7 +46,7 @@
             
             private function performValidation():void {
                 v.minLength = 5;
-                v.tooShortError = "Min 5 charachters";
+                v.tooShortError = resourceManager.getString('myResources', 'TEXTINERFACE_23');
                 // Set the listener property to the component 
                 // used to display validation errors. 
                 v.listener=thecomments;
