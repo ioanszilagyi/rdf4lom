@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties mainApplicationPath="rdf4lom.mxml" version="3">
+  <compiler additionalCompilerArguments="-locale=en_US,fr_FR -source-path ../locale/{locale} -services &quot;C:/Documents and Settings/Radu/workspace/rdf4lom/WebContent/WEB-INF/flex/services-config.xml&quot;" copyDependentFiles="true" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersion="9.0.124" htmlPlayerVersionCheck="true" outputFolderPath="bin-debug" rootURL="http://localhost:8080/rdf4lom" sourceFolderPath="flex_src" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path=""/>
+      <libraryPathEntry kind="1" linkType="1" path="flex_libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/Documents and Settings/Radu/workspace/rdf4lom/WebContent/WEB-INF/flex/libs/fds.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/Documents and Settings/Radu/workspace/rdf4lom/WebContent/WEB-INF/flex/libs/player/playerfds.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="C:/Documents and Settings/Radu/workspace/rdf4lom/WebContent/WEB-INF/flex/locale/{locale}"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="rdf4lom.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+</actionScriptProperties>
