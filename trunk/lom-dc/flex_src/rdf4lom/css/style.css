@@ -1,0 +1,92 @@
+/* CSS file */
+
+Application {
+   backgroundColor: #6f82a5;
+   backgroundGradientColors: #354259, #55688a;
+   backgroundGradientAlphas: 1, 1;
+   color: #000033;
+}
+
+TextInput {
+   backgroundAlpha: 0.8;
+   color: #000000;
+   fontSize: 16;
+   fontWeight: normal;
+   dropShadowEnabled: true;
+}
+
+TabBar {
+	horizontalGap: 5;
+}
+
+Accordion {
+   borderStyle: outset;
+   borderThickness: 0;
+   backgroundAlpha: 0.5;
+   selectedFillColors: #354259, #354259;
+   backgroundColor: #6f82a5;
+   borderColor: #f29000;
+   headerStyleName: "AccordionCategoriesHeaderStyle";	
+}
+
+.AccordionCategoriesHeaderStyle {
+       /* selectedFillColors: Blue, haloBlue;
+        fontWeight: bold; */
+        letterSpacing: 5;
+   		color: #000000;
+   		textAlign: left;
+       /*   icon: Embed(source='image/uk.png');  */
+}
+
+ComboBox {
+   cornerRadius: 15;
+   arrowButtonWidth: 24;
+   backgroundAlpha: 0.7;
+   fontSize: 16;
+   letterSpacing: 3;
+   dropdownStyleName: "myComboBoxDropDowns";
+}
+
+.myComboBoxDropDowns {
+   fontSize: 16;
+}
+
+TextArea {
+   fontSize: 16;
+   backgroundAlpha: 0.7;
+   cornerRadius: 11;
+   dropShadowEnabled: true;
+}
+
+Button {
+   cornerRadius: 12;
+   themeColor: #f29000;
+   fontSize: 14;
+}
+
+VRule {
+   strokeColor: #f29000;
+   shadowColor: #f29000;
+}
+
+HRule {
+   strokeColor: #f29000;
+   shadowColor: #f29000;
+}
+
+CheckBox {
+   themeColor: #f29000;
+   fontSize: 16;
+}
+
+DateChooser {
+   selectionColor: #009dff;
+   backgroundAlpha: 0.7;
+   themeColor: #f29000;
+   dropShadowEnabled: true;
+   fontSize: 16;
+}
+
+Label {
+   fontSize: 16;
+}

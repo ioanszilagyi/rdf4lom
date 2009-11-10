@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+	verticalAlign="middle"
+	width="100%" height="100%"
+	creationComplete="addComponent();">
+	<mx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+			import mx.collections.ArrayCollection;
+			import as3.DynCatArrays;
+			
+			private function addComponent():void {
+				ridentifier.addChild(new r_ide_add());
+				rdescription.addChild(new r_des_add());
+			}
+			
+			private function removeComponent():void {				
+				parent.removeChild(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:Style source="rdf4lom/css/style.css" />
+	
+	<mx:Accordion id="resource" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="7.2.1 {resourceManager.getString('myResources', 'IDENTIFIER')}" id="ridentifier" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="7.2.2 {resourceManager.getString('myResources', 'DESCRIPTION')}" id="rdescription" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
+</mx:HBox>

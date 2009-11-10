@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		verticalAlign="top" 
+		label="{resourceManager.getString('myResources', 'RELATION')} #{parent.getChildIndex(this)+1}"
+		width="100%"
+		creationComplete="addComponent()">
+	<mx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+			import mx.collections.ArrayCollection;
+			import as3.DynCatArrays;
+			
+			private function addComponent():void {
+				rkind.addChild(new r_kin_add());
+				rresource.addChild(new r_res());
+			}
+			
+			private function removeComponent():void {
+				DynCatArrays.lomRRelation.removeItemAt(DynCatArrays.lomRRelation.getItemIndex(this));
+				parent.removeChild(this);
+			}
+		]]>
+	</mx:Script>
+	<mx:Style source="rdf4lom/css/style.css" />
+        
+	<mx:Accordion id="relation" width="100%" height="100%" headerStyleName="AccordionCategoriesHeaderStyle">	
+		<mx:VBox label="7.1 {resourceManager.getString('myResources', 'KIND')}" id="rkind" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+		<mx:VBox label="7.2 {resourceManager.getString('myResources', 'RESOURCE')}" id="rresource" horizontalAlign="left" verticalAlign="top" width="100%" height="100%" />
+	</mx:Accordion>
+	<mx:VRule height="30"/>
+	<mx:Button icon="@Embed(source='image/delete.png')" width="26" height="22" click="removeComponent();"/>	
+		
+</mx:HBox>

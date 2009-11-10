@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalAlign="top" width="100%">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Application;
+			import as3.DynCatArrays;
+			private function addComponent():void {
+				var theDisObj:DisplayObject = new t_oth_delete();
+				DynCatArrays.lomTOtherPlatformRequirements.addItem(theDisObj);
+				parent.addChild(theDisObj);
+			}
+		]]>
+	</mx:Script>
+	<mx:TextArea width="50%" height="80" id="otherplatformrequirements"/>
+	<mx:VRule height="80"/>
+	<mx:ComboBox width="50%" editable="true" id="lang"></mx:ComboBox>
+	<mx:VRule height="20"/>
+	<mx:Button icon="@Embed(source='image/add.png')" width="26" height="22" click="addComponent();"/>	
+	
+</mx:HBox>
